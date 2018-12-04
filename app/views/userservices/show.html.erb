@@ -1,0 +1,11 @@
+<h1>Userservices#show</h1>
+
+<p>Nom: <%= @user.firstname %></p><br>
+	
+<p>Prenom: <%= @user.lastname %></p><br>
+	
+<p>Email<%= @user.email %></p><br>
+	
+<p>N telephone<%= @user.telephone %></p><br>
+
+<p><%= link_to "modifier", edit_userservice_path(@user.id) %></p>

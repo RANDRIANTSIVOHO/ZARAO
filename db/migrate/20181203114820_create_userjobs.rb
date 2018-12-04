@@ -4,9 +4,9 @@ class CreateUserjobs < ActiveRecord::Migration[5.2]
     	t.string :firstname
     	t.string :lastname
     	t.string :email
-    	t.integer :telephone
+      t.string :password_digest
+    	t.string :telephone
     	t.text :description
-    	t.string :password_diggest
     	t.string :confirmation_token
     	t.boolean :confirmed, default: false
     	t.decimal :price

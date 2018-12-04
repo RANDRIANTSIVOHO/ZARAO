@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2018_12_03_131939) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email"
-    t.string "password_diggest"
+    t.string "password_digest"
     t.boolean "admin", default: true
   end
 
@@ -41,19 +41,21 @@ ActiveRecord::Schema.define(version: 2018_12_03_131939) do
   end
 
   create_table "offers", force: :cascade do |t|
+    t.bigint "userservice_id"
     t.string "title"
     t.text "description"
     t.decimal "price"
     t.integer "delais"
+    t.index ["userservice_id"], name: "index_offers_on_userservice_id"
   end
 
   create_table "userjobs", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
     t.string "email"
-    t.integer "telephone"
+    t.string "password_digest"
+    t.string "telephone"
     t.text "description"
-    t.string "password_diggest"
     t.string "confirmation_token"
     t.boolean "confirmed", default: false
     t.decimal "price"
@@ -66,7 +68,7 @@ ActiveRecord::Schema.define(version: 2018_12_03_131939) do
     t.string "lastname"
     t.string "email"
     t.integer "telephone"
-    t.string "password_diggest"
+    t.string "password_digest"
     t.string "confirmation_token"
     t.boolean "confirmed", default: false
   end

@@ -1,0 +1,22 @@
+<h1>EDIT USER SERVICES</h1>
+
+<%= form_for @user do |t| %>
+	
+	<%= t.label :firstname, "Nom: " %>
+	<%= t.text_field :firstname %><br>
+
+	<%= t.label :lastname, "Prenom: " %>
+	<%= t.text_field :lastname %><br>
+
+	<%= t.label :email, "Email: " %>
+	<%= t.email_field :email %><br>
+
+	<%= t.label :password, "Mot de passe: " %>
+	<%= t.password_field :password %><br>
+
+	<%= t.label :telephone, "N telephone: " %>
+	<%= t.text_field :telephone %><br>
+
+	<%= t.submit "creer un compte" %>
+
+<% end %>

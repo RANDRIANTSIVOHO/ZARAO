@@ -1,0 +1,10 @@
+<h1>Accueil</h1>
+
+<% if signed_in %>
+	<%= link_to "se deconnecter", logout_path, method: :delete %><br>
+	<%= current_user.email %>
+<% else %>
+	<%= link_to "se connecter", login_path %>
+	<%=link_to "s'inscrire(cherche)", new_userjob_path %>
+	<%=link_to "s'inscrire(offre)", new_userservice_path %>
+<% end %>

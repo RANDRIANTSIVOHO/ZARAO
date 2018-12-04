@@ -1,0 +1,15 @@
+<h1>Sessions#new</h1>
+      
+      <% if flash[:error] || flash[:notice] %>
+        <script type="text/javascript">alert(<%= flash[:error] %> <%= flash[:notice] %>)</script>
+      <% end %>
+
+<%= form_for(:sessions, url: login_path) do |t| %>
+	<%= t.label :email, "Email: " %>
+	<%= t.email_field :email %><br>
+
+	<%= t.label :password, "Mot de passe" %>
+	<%= t.password_field :password %><br>
+
+	<%= t.submit "se connecter" %>
+<% end %>

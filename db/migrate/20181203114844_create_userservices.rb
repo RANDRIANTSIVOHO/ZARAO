@@ -5,7 +5,7 @@ class CreateUserservices < ActiveRecord::Migration[5.2]
     	t.string :lastname
     	t.string :email
     	t.integer :telephone
-    	t.string :password_diggest
+    	t.string :password_digest
     	t.string :confirmation_token
     	t.boolean :confirmed, default: false
       
