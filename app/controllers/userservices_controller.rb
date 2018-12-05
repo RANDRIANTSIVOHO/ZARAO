@@ -1,7 +1,12 @@
 class UserservicesController < ApplicationController
   
     def new
-      @user = Userservice.new
+      if !signed_in
+        @user = Userservice.new
+      else
+        flash[:error] = "vous etes deja connecte"
+        redirect_to root_path
+      end
     end
 
     def create
@@ -42,9 +47,14 @@ class UserservicesController < ApplicationController
     end
 
     def destroy
-      Userservice.destroy(params[:id])
-      flash[:notice] = "votre compte a ete effacee avec succes"
-      redirect_to root_path
+      if params[:id] == current_user.id || uroot
+        Userservice.destroy(params[:id])
+        flash[:notice] = "votre compte a ete effacee avec succes"
+        redirect_to root_path
+      else
+        flash[:error] = "vous n'avez pas le droit de faire ce changement"
+        redirect_to root_path
+      end
     end
 
     def confirm

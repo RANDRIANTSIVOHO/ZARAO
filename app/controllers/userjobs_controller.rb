@@ -1,8 +1,13 @@
 class UserjobsController < ApplicationController
   
     def new
-    	@user = Userjob.new
-        @categories = Category.all
+        if !signed_in
+    	    @user = Userjob.new
+            @categories = Category.all
+        else
+            flash[:error] = "vous etes deja connecte"
+            redirect_to root_path
+        end
     end
 
     def create
@@ -46,14 +51,19 @@ class UserjobsController < ApplicationController
     end
 
     def destroy
-    	Userjob.destroy(params[:id])
-    	flash[:notice] = "votre compte a ete effacee avec succes"
-    	redirect_to root_path
+        if params[:id] == current_user.id || uroot
+        	Userjob.destroy(params[:id])
+        	flash[:notice] = "votre compte a ete effacee avec succes"
+        	redirect_to root_path
+        else
+            flash[:error] = "vous n'avez pas le droit de faire ce changement"
+            redirect_to root_path
+        end
     end
 
     def confirm
         if user = Userjob.find(params[:id])
-                if user.confirmation_token == params[:token]
+            if user.confirmation_token == params[:token]
                 flash[:notice] = "confirmation reussie, on vous remercie!!!"
                 user.confirmation_token = nil
                 user.confirmed = true

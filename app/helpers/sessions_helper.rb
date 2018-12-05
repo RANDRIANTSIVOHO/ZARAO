@@ -26,9 +26,17 @@ module SessionsHelper
 	end
 
 	def root
-		unless signed_in && current_user.admin == true
-			flash[:error] = "vous n'etes pas autorisee a faire ce changement"
-			redirect_to root_path
+		unless Userjob.find_by(email: current_user.email) || Userservice.find_by(email: current_user.email)
+			unless signed_in && current_user.admin == true
+				flash[:error] = "vous n'etes pas autorisee a faire ce changement"
+				redirect_to root_path
+			end
+		end
+	end
+
+	def uroot
+		unless Userjob.find_by(email: current_user.email) || Userservice.find_by(email: current_user.email)
+			signed_in && current_user.admin == true ? true : false
 		end
 	end
 

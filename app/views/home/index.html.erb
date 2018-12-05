@@ -20,22 +20,31 @@
 	<div>
 		<p>titre: <%= of.title %></p><br>
 		<p>description: <%= of.description %></p><br>
-		<p>prix: <%= of.price %></p><br>
-		<p>delais: <%= of.delais %></p><br>
-		<p><%= link_to "interesse" %></p>
-		<p><%= link_to "effacer", offer_path(of), method: :delete %></p>
+		<p>prix: <%= of.price %><span>$/semaine</span></p><br>
+		<p>delais: <%= of.delais %><span>semaine</span></p><br>
+		<p><%= Interested.where(offer_id: of.id).length %> interesse</p>
+		<% if utype %>
+			<% if i = Interested.find_by(offer_id: of.id) %>
+				<% if i.userjob_id == current_user.id %>
+					<p><%= link_to "plus interesse", interested_path(of.id), method: :delete %></p>
+				<% end %>
+			<% else %>
+				<p><%= link_to "interesse", interesteds_path(of.id) %></p>
+			<% end %>
+		<% end %>
+		<p><%= link_to "effacer", offer_path(of), method: :delete, data: {confirm: "voulez vous vraiment effacer cette publication?"} %></p>
 	</div>
 <% end %>
 
 
-<% if !utype && signed_in %>
+<% if (!utype || uroot) && signed_in  %>
 	<%= form_for @offer do |of| %>
 		<%= of.label :title, "titre: " %>
 		<%= of.text_field :title %><br>
 		<%= of.label :description, "description: " %>
 		<%= of.text_area :description %><br>
 		<%= of.label :price, "prix: " %>
-		<%= of.text_field :price %><span>$/mois</span><br>
+		<%= of.text_field :price %><span>$/semaine</span><br>
 		<%= of.label :delais, "delais du projet: " %>
 		<%= of.text_field :delais %><span>semaine</span><br>
 		<%= of.submit "publier" %>
