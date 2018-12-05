@@ -10,9 +10,6 @@
 
 	<%= t.label :email, "Email: " %>
 	<%= t.email_field :email %><br>
-
-	<%= t.label :password, "Mot de passe: " %>
-	<%= t.password_field :password %><br>
 	
 	<%= t.label :telephone, "N telephone: " %>
 	<%= t.text_field :telephone %><br>
@@ -20,9 +17,16 @@
 	<%= t.label :description, "petit description de vous: " %>
 	<%= t.text_area :description %><br>
 
-	<select name="user[category]">
+	<%= t.label :price, "Prix: " %>
+	<%= t.text_field :price %><span>$/mois</span><br>
+
+	<select name="user[category]" >
 		<% @categories.each do |opt| %>
-			<option><%= opt.title %></option>
+			<% if opt.id == @user.category_id %>
+				<option selected="selected"><%= opt.title %></option>
+			<% else %>
+				<option><%= opt.title %></option>
+			<% end %>
 		<% end %>
 	</select><br>
 

@@ -1,7 +1,7 @@
 class Comment < ApplicationRecord
 	
-	has_many :userjobs
-	has_many :userservices
+	belongs_to :userjobs, optional: true
+	belongs_to :userservices, optional: true
 
 	validates :description,
 				presence: true,

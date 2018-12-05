@@ -1,10 +1,43 @@
 <h1>Accueil</h1>
 
 <% if signed_in %>
+	<% if Userjob.find_by(email: current_user.email) %>
+		<%= link_to "editer le profil", edit_userjob_path(current_user.id) %>
+		<%= link_to "votre profil", userjob_path(current_user.id) %>
+	<% else %>
+		<%= link_to "editer le profil", edit_userservice_path(current_user.id)%>
+		<%= link_to "votre profil", userservice_path(current_user.id)%>
+	<% end %>
 	<%= link_to "se deconnecter", logout_path, method: :delete %><br>
 	<%= current_user.email %>
 <% else %>
 	<%= link_to "se connecter", login_path %>
 	<%=link_to "s'inscrire(cherche)", new_userjob_path %>
 	<%=link_to "s'inscrire(offre)", new_userservice_path %>
+<% end %>
+
+<% @offers.each do |of| %>
+	<div>
+		<p>titre: <%= of.title %></p><br>
+		<p>description: <%= of.description %></p><br>
+		<p>prix: <%= of.price %></p><br>
+		<p>delais: <%= of.delais %></p><br>
+		<p><%= link_to "interesse" %></p>
+		<p><%= link_to "effacer", offer_path(of), method: :delete %></p>
+	</div>
+<% end %>
+
+
+<% if !utype && signed_in %>
+	<%= form_for @offer do |of| %>
+		<%= of.label :title, "titre: " %>
+		<%= of.text_field :title %><br>
+		<%= of.label :description, "description: " %>
+		<%= of.text_area :description %><br>
+		<%= of.label :price, "prix: " %>
+		<%= of.text_field :price %><span>$/mois</span><br>
+		<%= of.label :delais, "delais du projet: " %>
+		<%= of.text_field :delais %><span>semaine</span><br>
+		<%= of.submit "publier" %>
+	<% end %>
 <% end %>

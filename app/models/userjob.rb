@@ -1,7 +1,7 @@
 class Userjob < ApplicationRecord
-
+ 
 	belongs_to :category
-	belongs_to :comment
+	has_many :comment
 	has_many :interesteds
 	has_many :offers, through: :interesteds
 
@@ -12,7 +12,7 @@ class Userjob < ApplicationRecord
 
 	validates :lastname,
 				presence: true,
-				length: {minimum: 3, maximum: 55}
+				length: {maximum: 55}
 
 	validates :email,
 				presence: true,
@@ -21,12 +21,14 @@ class Userjob < ApplicationRecord
 				uniqueness: {case_sensitive: false}
 
 	validates :telephone,
-				presence: true,
-				format: {with: /[0-9]{8,16}/}
+				presence: true
 
 	validates :description,
 				presence: true,
 				length: {maximum: 255}
+
+	validates :price,
+				presence: true
 
 	has_secure_password
 

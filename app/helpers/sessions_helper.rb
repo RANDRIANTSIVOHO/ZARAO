@@ -32,4 +32,12 @@ module SessionsHelper
 		end
 	end
 
+	def utype
+		if signed_in
+			return Userjob.find_by(email: current_user.email) ? true : false
+		else
+			return false
+		end
+	end
+
 end

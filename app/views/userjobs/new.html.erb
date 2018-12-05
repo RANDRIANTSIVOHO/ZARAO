@@ -23,6 +23,9 @@
 	<%= t.label :description, "petit description de vous: " %>
 	<%= t.text_area :description %><br>
 
+	<%= t.label :price, "Prix: " %>
+	<%= t.text_field :price %><span>$/mois</span><br>
+
 	<select name="user[category]">
 		<% @categories.each do |opt| %>
 			<option><%= opt.title %></option>

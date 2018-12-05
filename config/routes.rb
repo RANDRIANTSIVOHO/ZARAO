@@ -5,9 +5,19 @@ Rails.application.routes.draw do
   get "/login", to:  "sessions#new"
   post "/login", to:  "sessions#create"
   delete "/logout", to:  "sessions#destroy"
+
+  resources :offers, only: [:new, :create, :destroy]
+
+  resources :userjobs, only: [:new, :create, :show, :edit, :update, :destroy] do
+  	member do 
+  		get "confirm"
+  	end
+  end
   
-  resources :userjobs, only: [:new, :create, :show, :edit, :update, :destroy]
-  
-  resources :userservices, only: [:new, :create, :show, :edit, :update, :destroy]
+  resources :userservices, only: [:new, :create, :show, :edit, :update, :destroy] do
+  	member do 
+  		get "confirm"
+  	end
+  end
 
 end

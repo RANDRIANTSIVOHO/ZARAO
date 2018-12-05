@@ -7,26 +7,28 @@ class UserjobsController < ApplicationController
 
     def create
     	user = Userjob.new(param)
-        user.Category = Category.find_by(title: params[:user][:category])
+        user.category = Category.find_by(title: params[:user][:category])
     	if user.valid?
     		user.save
+            UserMailer.confirm(user).deliver_now
     		flash[:notice] = 'votre compte a ete cree avec succes, veuillez confirmer votre compte'
     		redirect_to root_path
     	else
     		flash[:error] = "donne invalide, veuillez reessayer"
-    		render 'new'
+    		redirect_to new_userjob_path
     	end	
     end
 
     def update
     	user = current_user
+        user.category = Category.find_by(title: params[:user][:category])
     	if user.update(param)
     		user.save
     		flash[:notice] = "mise a jours reuissie"
     		render show
     	else
     		flash[:error] = "donne invalid, veuillez reessayer"
-    		render 'edit'
+    		redirect_to  edit_userjob_path(current_user.id)
     	end
     end
 
@@ -38,6 +40,7 @@ class UserjobsController < ApplicationController
 
     def edit
     	if signed_in
+            @categories = Category.all
     		@user = current_user
     	end
     end
@@ -48,10 +51,28 @@ class UserjobsController < ApplicationController
     	redirect_to root_path
     end
 
+    def confirm
+        if user = Userjob.find(params[:id])
+                if user.confirmation_token == params[:token]
+                flash[:notice] = "confirmation reussie, on vous remercie!!!"
+                user.confirmation_token = nil
+                user.confirmed = true
+                log_in user
+                redirect_to root_path
+            else
+                flash[:error] = "token invalid"
+                redirect_to root_path
+            end
+        else
+            flash[:error] = "Compte introuvable"
+            redirect_to root_path
+        end
+    end
+
     private
 
     def param
-    	return params.require(:user).permit(:firstname, :lastname, :email, :password, :password_confirmation, :telephone, :description, :price)
+    	return params.require(:userjob).permit(:firstname, :lastname, :email, :password, :password_confirmation, :telephone, :description, :price)
     end
 
 end
