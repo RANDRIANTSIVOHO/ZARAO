@@ -1,0 +1,21 @@
+<nav>
+	<%= link_to "Zarao", root_path %>
+	<%= link_to "About", about_path %>
+	<%= link_to "Contact", contact_path %>
+	<% if signed_in %>
+			<% if Userjob.find_by(email: current_user.email) %>
+				<%= link_to "editer le profil", edit_userjob_path(current_user.id) %>
+				<%= link_to "Profil", userjob_path(current_user.id) %>
+			<% else %>
+				<%= link_to "List", userjobs_path %>
+				<%= link_to "editer le profil", edit_userservice_path(current_user.id)%>
+				<%= link_to "votre profil", userservice_path(current_user.id)%>
+			<% end %>
+		<%= current_user.email %>
+		<%= link_to "se deconnecter", logout_path, method: :delete %>
+	<% else %>
+		<%= link_to "se connecter", login_path %>
+		<%=link_to "s'inscrire(cherche)", new_userjob_path %>
+		<%=link_to "s'inscrire(offre)", new_userservice_path %>
+	<% end %>
+</nav>

@@ -19,8 +19,8 @@ class Userservice < ApplicationRecord
 				uniqueness: {case_sensitive: false}
 
 	validates :telephone,
-				presence: true,
-				format: {with: /[0-9]{8,16}/}
+				presence: true
+				
 
 	has_secure_password
 

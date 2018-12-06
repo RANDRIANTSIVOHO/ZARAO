@@ -8,7 +8,7 @@
 
 
 Admin.create(email: "fef@fef.fef", password: "froot", password_confirmation: "froot")
-Admin.create(email: "tol@tol.tol", password: "root", password_confirmation: "root")
+Admin.create(email: "Admin@zarao.mg", password: "root", password_confirmation: "root")
 
 
 Category.create(title: "Peinture")

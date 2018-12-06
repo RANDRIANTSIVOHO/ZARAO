@@ -1,5 +1,9 @@
 class UserjobsController < ApplicationController
-  
+    
+    def index
+        @user = Userjob.all
+    end
+
     def new
         if !signed_in
     	    @user = Userjob.new

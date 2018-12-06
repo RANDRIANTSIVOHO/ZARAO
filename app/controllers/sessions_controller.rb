@@ -15,11 +15,11 @@ class SessionsController < ApplicationController
     			redirect_to root_path
     		else
     			flash[:error] = "combinaison invalide"
-    			redirect_to new_session_path
+    			redirect_to login_path
     		end
     	else
     		flash[:error] = "combinaison invalide"
-    		redirect_to new_session_path
+    		redirect_to login_path
     	end
     end
 
