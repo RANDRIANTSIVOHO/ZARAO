@@ -63,7 +63,7 @@ class UserservicesController < ApplicationController
             flash[:notice] = "confirmation reussie, on vous remercie!!!"
             user.confirmation_token = nil
             user.confirmed = true
-            user
+            user.save
             log_in user
             redirect_to root_path
           else

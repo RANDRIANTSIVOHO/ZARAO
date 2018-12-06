@@ -1,6 +1,10 @@
 class InterestedsController < ApplicationController
 
-	before_action :signed_in 
+	before_action :signed_in
+
+	def index
+		@interesse = Interested.where(offer_id: params[:id])
+	end
 
 	def create
 		i = Interested.new

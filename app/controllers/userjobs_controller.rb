@@ -1,5 +1,9 @@
 class UserjobsController < ApplicationController
-  
+    
+    def index
+        @user = Userjob.all
+    end
+
     def new
         if !signed_in
     	    @user = Userjob.new
@@ -67,6 +71,7 @@ class UserjobsController < ApplicationController
                 flash[:notice] = "confirmation reussie, on vous remercie!!!"
                 user.confirmation_token = nil
                 user.confirmed = true
+                user.save
                 log_in user
                 redirect_to root_path
             else

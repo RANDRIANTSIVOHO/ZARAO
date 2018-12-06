@@ -1,0 +1,8 @@
+<% @interesse.each do |i| %>
+	<ul>
+		<li>
+			<%= Userjob.find(i.userjob_id).lastname %>
+		</li>
+	</ul>
+<% end %>
+<%= link_to "back", root_path %>
