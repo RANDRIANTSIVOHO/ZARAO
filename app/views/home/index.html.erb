@@ -24,10 +24,8 @@
 		<p>delais: <%= of.delais %><span>semaine</span></p><br>
 		<p><%= Interested.where(offer_id: of.id).length %> interesse</p>
 		<% if utype %>
-			<% if i = Interested.find_by(offer_id: of.id) %>
-				<% if i.userjob_id == current_user.id %>
-					<p><%= link_to "plus interesse", interested_path(of.id), method: :delete %></p>
-				<% end %>
+			<% if Interested.find_by(offer_id: of.id, userjob_id: current_user.id) %>
+				<p><%= link_to "plus interesse", interested_path(of.id), method: :delete %></p>
 			<% else %>
 				<p><%= link_to "interesse", interesteds_path(of.id) %></p>
 			<% end %>

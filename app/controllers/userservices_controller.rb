@@ -10,16 +10,21 @@ class UserservicesController < ApplicationController
     end
 
     def create
-      user = Userservice.new(param)
-      if user.valid?
-        user.save
-        UserMailer.confirm(user, false).deliver_now
-        flash[:notice] = 'votre compte a ete cree avec succes, veuillez confirmer votre compte'
-        redirect_to root_path
+      unless user = Userjob.find_by(email: params[:userservice][:email]) || user = Userservice.find_by(email: params[:userservice][:email]) || user = Admin.find_by(email: params[:userservice][:email])
+        user = Userservice.new(param)
+        if user.valid?
+          user.save
+          UserMailer.confirm(user, false).deliver_now
+          flash[:notice] = 'votre compte a ete cree avec succes, veuillez confirmer votre compte'
+          redirect_to root_path
+        else
+          flash[:error] = "donne invalide, veuillez reessayer"
+          redirect_to new_userservice_path
+        end
       else
-        flash[:error] = "donne invalide, veuillez reessayer"
+        flash[:error] = "email deja utilisee"
         redirect_to new_userservice_path
-      end 
+      end
     end
 
     def update
@@ -63,7 +68,7 @@ class UserservicesController < ApplicationController
             flash[:notice] = "confirmation reussie, on vous remercie!!!"
             user.confirmation_token = nil
             user.confirmed = true
-            user
+            user.save
             log_in user
             redirect_to root_path
           else

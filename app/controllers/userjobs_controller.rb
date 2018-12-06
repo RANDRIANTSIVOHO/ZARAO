@@ -11,17 +11,22 @@ class UserjobsController < ApplicationController
     end
 
     def create
-    	user = Userjob.new(param)
-        user.category = Category.find_by(title: params[:user][:category])
-    	if user.valid?
-    		user.save
-            UserMailer.confirm(user).deliver_now
-    		flash[:notice] = 'votre compte a ete cree avec succes, veuillez confirmer votre compte'
-    		redirect_to root_path
-    	else
-    		flash[:error] = "donne invalide, veuillez reessayer"
-    		redirect_to new_userjob_path
-    	end	
+        unless user = Userjob.find_by(email: params[:userjob][:email]) || user = Userservice.find_by(email: params[:userjob][:email]) || user = Admin.find_by(email: params[:userjob][:email])
+        	user = Userjob.new(param)
+            user.category = Category.find_by(title: params[:user][:category])
+        	if user.valid?
+        		user.save
+                UserMailer.confirm(user).deliver_now
+        		flash[:notice] = 'votre compte a ete cree avec succes, veuillez confirmer votre compte'
+        		redirect_to root_path
+        	else
+        		flash[:error] = "donne invalide, veuillez reessayer"
+        		redirect_to new_userjob_path
+        	end
+        else
+            flash[:error] = "email deja utilisee"
+            redirect_to new_userjob_path
+        end
     end
 
     def update
@@ -67,6 +72,7 @@ class UserjobsController < ApplicationController
                 flash[:notice] = "confirmation reussie, on vous remercie!!!"
                 user.confirmation_token = nil
                 user.confirmed = true
+                user.save
                 log_in user
                 redirect_to root_path
             else
