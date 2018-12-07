@@ -3,15 +3,15 @@
 <p>Nom: <%= @user.firstname %></p><br>
 	
 <p>Prenom: <%= @user.lastname %></p><br>
-	
+
 <p>Email: <%= @user.email %></p><br>
 	
 <p>N telephone: <%= @user.telephone %></p><br>
+
+<p>prix: <%= @user.price %>$/mois</p>
 	
 <p>Description: <%= @user.description %></p><br>
 	
 <p>Categorie: <%= Category.find(@user.category_id).title %></p><br>
-
-<p>prix: <%= @user.price %>$/mois</p>
 
 <p><%= link_to "modifier", edit_userjob_path(@user.id) %></p>

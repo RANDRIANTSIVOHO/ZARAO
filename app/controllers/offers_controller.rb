@@ -1,5 +1,7 @@
 class OffersController < ApplicationController
 
+	before_action :confirmed_count
+
 	def new
 		@offer = Offer.new
 		@offers = Offer.all

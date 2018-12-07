@@ -1,8 +1,25 @@
+<table style="border-collapse: collapse; margin: 10px">
+	<thead>
+		<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">Name : </td>
+		<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">Description : </td>
+		<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">Category: </td>
+	</thead>
 <% @interesse.each do |i| %>
-	<ul>
-		<li>
-			<%= Userjob.find(i.userjob_id).lastname %>
-		</li>
-	</ul>
+	<% u = Userjob.find(i.userjob_id) %>
+	<tr>
+		<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">
+			<%=  u.firstname %> <%=  u.lastname %>
+		</td>
+		<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">
+			<%= u.description %>
+		</td>
+		<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">
+			<%= Category.find(u.category_id).title %>
+		</td>
+	</tr>
 <% end %>
+</table>
+
+<% p = Offer.find(@interesse.first.offer_id) %>
+<%= link_to "payer", pay_path(p.price) %>
 <%= link_to "back", root_path %>

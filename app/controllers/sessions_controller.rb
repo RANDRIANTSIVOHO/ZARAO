@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  
+
     def new
         if signed_in
             flash[:error] = "vous etes deja connectee"

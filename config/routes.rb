@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
-  
   root "home#index"
 
   get "/about", to: "aboute#index"
@@ -11,6 +10,8 @@ Rails.application.routes.draw do
   delete "/logout", to:  "sessions#destroy"
 
   resources :offers, only: [:new, :create, :destroy]
+  get "/pay/:bob", to: "charges#new", as: "pay"
+  resources :charges, only: [:create]
 
   get "/list/:id", to: "interesteds#index", as: "list"
 

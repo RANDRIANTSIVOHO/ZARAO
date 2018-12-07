@@ -1,4 +1,6 @@
 class UserservicesController < ApplicationController
+    
+    before_action :confirmed_count, only: [:update, :show, :edit, :destroy]
   
     def new
       if !signed_in

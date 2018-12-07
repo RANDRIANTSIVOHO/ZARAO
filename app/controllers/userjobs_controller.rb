@@ -1,5 +1,7 @@
 class UserjobsController < ApplicationController
     
+    before_action :confirmed_count, only: [:index, :update, :show, :edit, :destroy]
+
     def index
         @user = Userjob.all
     end

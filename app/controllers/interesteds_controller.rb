@@ -1,6 +1,6 @@
 class InterestedsController < ApplicationController
 
-	before_action :signed_in
+	before_action :signed_in, :confirmed_count
 
 	def index
 		@interesse = Interested.where(offer_id: params[:id])

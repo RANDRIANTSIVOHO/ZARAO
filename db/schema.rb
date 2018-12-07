@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2018_12_03_131939) do
     t.string "email"
     t.string "password_digest"
     t.boolean "admin", default: true
+    t.boolean "confirmed", default: true
   end
 
   create_table "categories", force: :cascade do |t|
