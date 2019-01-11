@@ -1,6 +1,9 @@
 <h1>EDIT USER SERVICES</h1>
 
 <%= form_for @user do |t| %>
+
+	<%= t.label :pdp1, "photo de profil: " %>
+	<%= t.file_field :pdp1 %><br>
 	
 	<%= t.label :firstname, "Nom: " %>
 	<%= t.text_field :firstname %><br>
@@ -17,6 +20,6 @@
 	<%= t.label :telephone, "N telephone: " %>
 	<%= t.text_field :telephone %><br>
 
-	<%= t.submit "creer un compte" %>
+	<%= t.submit "changer" %>
 
 <% end %>

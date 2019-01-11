@@ -4,6 +4,7 @@ class UserjobsController < ApplicationController
 
     def index
         @user = Userjob.all
+        @user1 = Userservice.all
     end
 
     def new
@@ -11,7 +12,7 @@ class UserjobsController < ApplicationController
     	    @user = Userjob.new
             @categories = Category.all
         else
-            flash[:error] = "vous etes deja connecte"
+            flash[:error] = "vous etes deja connecte" 
             redirect_to root_path
         end
     end
@@ -41,7 +42,7 @@ class UserjobsController < ApplicationController
     	if user.update(param)
     		user.save
     		flash[:notice] = "mise a jours reuissie"
-    		render show
+    		redirect_to userjob_path(current_user.id)
     	else
     		flash[:error] = "donne invalid, veuillez reessayer"
     		redirect_to  edit_userjob_path(current_user.id)
@@ -94,7 +95,7 @@ class UserjobsController < ApplicationController
     private
 
     def param
-    	return params.require(:userjob).permit(:firstname, :lastname, :email, :password, :password_confirmation, :telephone, :description, :price)
+    	return params.require(:userjob).permit(:firstname, :lastname, :email, :password, :password_confirmation, :telephone, :description, :price, :avatar)
     end
 
 end

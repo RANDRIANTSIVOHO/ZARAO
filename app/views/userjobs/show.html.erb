@@ -1,17 +1,49 @@
-<h1>Userjobs#show</h1>
-	
-<p>Nom: <%= @user.firstname %></p><br>
-	
-<p>Prenom: <%= @user.lastname %></p><br>
+<div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
+       
+          <div class="col-lg-6">
+            <div class="p-4 mb-3 bg-white">
+              <h3 class="h5 text-black mb-3">PROFILE : <%= current_user.email %></h3>
+              <p class="mb-0 font-weight-bold">Nom</p>
+              <p class="mb-4"><%= @user.firstname %></p>
 
-<p>Email: <%= @user.email %></p><br>
-	
-<p>N telephone: <%= @user.telephone %></p><br>
+              <p class="mb-0 font-weight-bold">Prénoms</p>
+              <p class="mb-4"><%= @user.lastname %></p>
 
-<p>prix: <%= @user.price %>$/mois</p>
-	
-<p>Description: <%= @user.description %></p><br>
-	
-<p>Categorie: <%= Category.find(@user.category_id).title %></p><br>
+              <p class="mb-0 font-weight-bold">Email</p>
+              <p class="mb-4"><%= @user.email %></p>
 
-<p><%= link_to "modifier", edit_userjob_path(@user.id) %></p>
+              <p class="mb-0 font-weight-bold">Téléphone</p>
+              <p class="mb-4"><%= @user.telephone %></p>
+
+              <p class="mb-0 font-weight-bold">Salaire</p>
+              <p class="mb-4"><%= @user.price %> Ar / mois</p>
+
+              <p class="mb-0 font-weight-bold">Description</p>
+              <p class="mb-4"><%= @user.description %></p>
+
+              <p class="mb-0 font-weight-bold">Category</p>
+              <p class="mb-4"><%= Category.find(@user.category_id).title %></p>
+
+            </div>
+          </div>
+
+          <div class="col-md-6">
+          	<div class="p-4 mb-3 bg-white">
+          		<h3 class="h5 text-black mb-3">Your avatar</h3>
+          		<p>
+	          	<% if @user.avatar.attached? %>
+					<%= image_tag @user.avatar.variant(resize: "400x400") %>
+				<% else %>
+					<img src="int.jpg" height= "150">
+				<% end %>
+				</p>
+
+				<%= link_to "modifier", edit_userjob_path(@user.id), class:"btn btn-primary px-4 py-2 text-white pill" %>
+			</div>
+          </div>
+
+        </div>
+      </div>
+</div>

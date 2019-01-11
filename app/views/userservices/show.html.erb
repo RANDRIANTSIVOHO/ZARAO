@@ -1,4 +1,9 @@
-<h1>Userservices#show</h1>
+
+<% if @user.pdp1.attached? %>
+	<%= image_tag @user.pdp1.variant(resize: "400x400") %>
+<% else %>
+	<img src="int.jpg" height= "150">
+<% end %>
 
 <p>Nom: <%= @user.firstname %></p><br>
 	

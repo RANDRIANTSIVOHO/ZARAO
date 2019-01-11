@@ -34,7 +34,7 @@ class UserservicesController < ApplicationController
       if user.update(param)
         user.save
         flash[:notice] = "mise a jours reuissie"
-        render show
+        redirect_to userservice_path(current_user.id)
       else
         flash[:error] = "donne invalid, veuillez reessayer"
         redirect_to  edit_userservice_path(current_user.id)
@@ -86,7 +86,7 @@ class UserservicesController < ApplicationController
     private
 
     def param
-      return params.require(:userservice).permit(:firstname, :lastname, :email, :password, :password_confirmation, :telephone)
+      return params.require(:userservice).permit(:firstname, :lastname, :email, :password, :password_confirmation, :telephone, :pdp1)
     end
 
 

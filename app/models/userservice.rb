@@ -25,5 +25,6 @@ class Userservice < ApplicationRecord
 	has_secure_password
 
 	has_secure_token :confirmation_token
+	has_one_attached :pdp1
 
 end

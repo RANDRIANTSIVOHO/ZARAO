@@ -1,41 +1,307 @@
-<h1>Accueil</h1>
+<div class="site-blocks-cover overlay" style="background-image: url('images/hero_1.jpg');" data-aos="fade" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12" data-aos="fade">
+            
+            
+              <div class="row mb-3">
+                <div class="col-md-9">
+                  <div class="row">
+                    
+                      <% if (!utype || uroot) && signed_in  %>
+                          <div class="col-md-6 mb-3 mb-md-0">
+                            <a href="<%= offers_path %>" class="btn btn-primary btn-block"><span class="h5">+</span> Post new Offer</a>
+                          </div>
+                      <% end %>
+                    
+                  </div>
+                </div>
+              </div>
+              
+              
+            
+          </div>
+        </div>
+      </div>
+</div>
 
 
+<div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 mx-auto text-center mb-5 section-heading">
+            <h2 class="mb-5">Popular Categories</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="100">
+            <a href="#" class="h-100 feature-item">
+              <span class="d-block icon flaticon-calculator mb-3 text-primary"></span>
+              <h2>Accounting / Finanace</h2>
+              <span class="counting">10,391</span>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="200">
+            <a href="#" class="h-100 feature-item">
+              <span class="d-block icon flaticon-wrench mb-3 text-primary"></span>
+              <h2>Automotive Jobs</h2>
+              <span class="counting">192</span>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="300">
+            <a href="#" class="h-100 feature-item">
+              <span class="d-block icon flaticon-worker mb-3 text-primary"></span>
+              <h2>Construction / Facilities</h2>
+              <span class="counting">1,021</span>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="400">
+            <a href="#" class="h-100 feature-item">
+              <span class="d-block icon flaticon-telecommunications mb-3 text-primary"></span>
+              <h2>Telecommunications</h2>
+              <span class="counting">1,219</span>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="500">
+            <a href="#" class="h-100 feature-item">
+              <span class="d-block icon flaticon-stethoscope mb-3 text-primary"></span>
+              <h2>Healthcare</h2>
+              <span class="counting">482</span>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="600">
+            <a href="#" class="h-100 feature-item">
+              <span class="d-block icon flaticon-computer-graphic mb-3 text-primary"></span>
+              <h2>Design, Art &amp; Multimedia</h2>
+              <span class="counting">5,409</span>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="700">
+            <a href="#" class="h-100 feature-item">
+              <span class="d-block icon flaticon-trolley mb-3 text-primary"></span>
+              <h2>Transportation &amp; Logistics</h2>
+              <span class="counting">291</span>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="800">
+            <a href="#" class="h-100 feature-item">
+              <span class="d-block icon flaticon-restaurant mb-3 text-primary"></span>
+              <h2>Restaurant / Food Service</h2>
+              <span class="counting">329</span>
+            </a>
+          </div>
+        </div>
 
-<% @offers.each do |of| %>
-	<div>
-		<p>titre: <%= of.title %></p><br>
-		<p>description: <%= of.description %></p><br>
-		<p>prix: <%= of.price %><span>$/semaine</span></p><br>
-		<p>delais: <%= of.delais %><span>semaine</span></p><br>
-		<p><%= Interested.where(offer_id: of.id).length %>interesse</p>
-		<% if utype %>
-			<% if Interested.find_by(offer_id: of.id, userjob_id: current_user.id) %>
-				<p><%= link_to "plus interesse", interested_path(of.id), method: :delete %></p>
-			<% else %>
-				<p><%= link_to "interesse", interesteds_path(of.id) %></p>
-			<% end %>
-		<% end %>
-		<% if signed_in %>
-			<% if Userservice.find(of.userservice_id).email == current_user.email %>
-				<p><%= link_to "voir les interesse", list_path(of.id) %></p>
-				<p><%= link_to "effacer", offer_path(of), method: :delete, data: {confirm: "voulez vous vraiment effacer cette publication?"} %></p>
-			<% end %>
-		<% end %>
-	</div>
-<% end %>
+      </div>
+</div>
 
 
-<% if (!utype || uroot) && signed_in  %>
-	<%= form_for @offer do |of| %>
-		<%= of.label :title, "titre: " %>
-		<%= of.text_field :title %><br>
-		<%= of.label :description, "description: " %>
-		<%= of.text_area :description %><br>
-		<%= of.label :price, "prix: " %>
-		<%= of.text_field :price %><span>$/semaine</span><br>
-		<%= of.label :delais, "delais du projet: " %>
-		<%= of.text_field :delais %><span>semaine</span><br>
-		<%= of.submit "publier" %>
-	<% end %>
-<% end %>
+<div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 mb-5 mb-md-0" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="mb-5 h3">Recent Jobs</h2>
+            <div class="rounded border jobs-wrap">
+
+              <% @offers.each do |of| %>
+              
+              <div class="job-item d-block d-md-flex align-items-center">
+                <div class="job-details h-100">
+
+                 
+                  
+                   
+
+                  <div class="p-3 align-self-center">
+                      <div class="align-items-center">
+                         <h2 class="mr-3 text-black"><%= of.title %><span class="label label-info"></span></h2>
+                         <div class="badge-wrap">
+                          <span class="bg-danger text-white badge py-2 px-4"><%= Interested.where(offer_id: of.id).length %></span>
+                          <span class="bg-warning text-white badge py-2 px-4"><%= of.delais %><span> Semaine</span></span>
+                        </div>
+                      </div>
+
+                    <div class="mr-3"><%= of.description %></div>
+                    <div ><span class="icon-money mr-1"></span> <%= of.price %> Ar</div>
+                    <div>
+                      <% if signed_in %>
+                    
+                        <% if Userservice.find(of.userservice_id).email == current_user.email || uroot %>
+                          <span><%= link_to "voir les interesse", list_path(of.id) %></span><br>
+                          </span><%= link_to "effacer", offer_path(of), method: :delete, data: {confirm: "voulez vous vraiment effacer cette publication?"} %></span>
+                        <% end %>
+
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+
+                <% if utype %>
+                <div class="job-category align-self-center">
+                  <div class="p-3">
+                    <span class="p-2">
+                      
+                        <% if Interested.find_by(offer_id: of.id, userjob_id: current_user.id) %>
+                          <%= link_to "plus interesse", interested_path(of.id), method: :delete, class:"btn btn-primary" %>
+                        <% else %>
+                          <%= link_to "interesse", interesteds_path(of.id), class:"btn btn-primary" %>
+                        <% end %>
+                      
+          
+                    </span>
+                  </div>
+                </div>
+                <% end %>  
+              </div>
+              <% end %>
+            </div>
+          </div>
+
+
+          <div class="col-md-4 block-16" data-aos="fade-up" data-aos-delay="200">
+            <div class="d-flex mb-0">
+              <h2 class="mb-5 h3 mb-0">Featured Jobs</h2>
+              <div class="ml-auto mt-1"><a href="#" class="owl-custom-prev">Prev</a> / <a href="#" class="owl-custom-next">Next</a></div>
+            </div>
+
+            <div class="nonloop-block-16 owl-carousel">
+              <% @offers.each do |of| %>
+              <div class="border rounded p-4 bg-white">
+                <h2 class="h5"><%= of.title %></h2>
+                <% if utype %>
+                <p>
+                  <span>
+                        <% if Interested.find_by(offer_id: of.id, userjob_id: current_user.id) %>
+                          <%= link_to "plus interesse", interested_path(of.id), method: :delete, class:"btn btn-primary" %>
+                        <% else %>
+                          <%= link_to "interesse", interesteds_path(of.id), class:"btn btn-primary" %>
+                        <% end %>
+                          
+                        </span>
+                </p>
+                <% end %>
+                <p>
+                  <span class="d-block"><%= Interested.where(offer_id: of.id).length %></span>
+                  <span class="d-block"><%= of.delais %><span> Semaine</span></span>
+                  <span class="d-block"><span class="icon-money mr-1"></span><%= of.price %> Ar</span>
+                </p>
+                <p class="mb-0"><%= of.description %></p>
+              
+              <p>
+                <% if signed_in %>
+                    
+                        <% if Userservice.find(of.userservice_id).email == current_user.email || uroot %>
+                          <span><%= link_to "voir les interesse", list_path(of.id) %></span><br>
+                          </span><%= link_to "effacer", offer_path(of), method: :delete, data: {confirm: "voulez vous vraiment effacer cette publication?"} %></span>
+                        <% end %>
+
+                <% end %>
+              </p>
+              </div>
+              <% end %>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+<div class="site-section bg-white">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6 order-md-2">
+            
+              <div class="img-border">
+                <a href="https://vimeo.com/28959265" class="popup-vimeo image-play">
+                  <span class="icon-wrap">
+                    <span class="icon icon-play"></span>
+                  </span>
+                  <img src="images/hero_2.jpg" alt="Image" class="img-fluid rounded">
+                </a>
+              </div>
+            
+          </div>
+          <div class="col-md-6 order-md-1">
+            <div class="text-left mb-5 section-heading">
+              <h2>Testimonies</h2>
+            </div>
+
+            <p class="mb-4 h5 font-italic lineheight1-5">&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, nisi Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit nobis magni eaque velit eum, id rem eveniet dolor possimus voluptas..&rdquo;</p>
+            <p>&mdash; <strong class="text-black font-weight-bold">John Holmes</strong>, Marketing Strategist</p>
+            <p><a href="https://vimeo.com/28959265" class="popup-vimeo text-uppercase">Watch Video <span class="icon-arrow-right small"></span></a></p>
+          </div>
+        </div>
+      
+      </div>
+</div>
+
+<div class="site-section bg-light">
+      <div class="container">
+        
+        <div class="row align-items-center">
+          <div class="col-md-6 order-md-1">
+            
+              <div class="img-border">
+                <a href="https://vimeo.com/28959265" class="popup-vimeo image-play">
+                  <span class="icon-wrap">
+                    <span class="icon icon-play"></span>
+                  </span>
+                  <img src="images/hero_2.jpg" alt="Image" class="img-fluid rounded">
+                </a>
+              </div>
+            
+          </div>
+          <div class="col-md-6 order-md-2">
+            <div class="text-left mb-5 section-heading">
+              <h2>Testimonies</h2>
+            </div>
+
+            <p class="mb-4 h5 font-italic lineheight1-5">&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, nisi Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit nobis magni eaque velit eum, id rem eveniet dolor possimus voluptas..&rdquo;</p>
+            <p>&mdash; <strong class="text-black font-weight-bold">John Holmes</strong>, Marketing Strategist</p>
+            <p><a href="https://vimeo.com/28959265" class="popup-vimeo text-uppercase">Watch Video <span class="icon-arrow-right small"></span></a></p>
+          </div>
+        </div>
+      
+      </div>
+</div>
+
+<div class="site-section bg-white">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6 order-md-2">
+            
+              <div class="img-border">
+                <a href="https://vimeo.com/28959265" class="popup-vimeo image-play">
+                  <span class="icon-wrap">
+                    <span class="icon icon-play"></span>
+                  </span>
+                  <img src="images/hero_2.jpg" alt="Image" class="img-fluid rounded">
+                </a>
+              </div>
+            
+          </div>
+          <div class="col-md-6 order-md-1">
+            <div class="text-left mb-5 section-heading">
+              <h2>Testimonies</h2>
+            </div>
+
+            <p class="mb-4 h5 font-italic lineheight1-5">&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eaque, nisi Lorem ipsum dolor sit amet, consectetur adipisicing elit. Odit nobis magni eaque velit eum, id rem eveniet dolor possimus voluptas..&rdquo;</p>
+            <p>&mdash; <strong class="text-black font-weight-bold">John Holmes</strong>, Marketing Strategist</p>
+            <p><a href="https://vimeo.com/28959265" class="popup-vimeo text-uppercase">Watch Video <span class="icon-arrow-right small"></span></a></p>
+          </div>
+        </div>
+      
+      </div>
+</div>
+
+<div class="site-blocks-cover overlay inner-page" style="background-image: url('images/hero_1.jpg');" data-aos="fade" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-6 text-center" data-aos="fade">
+            <h1 class="h3 mb-0">Your Dream Job</h1>
+            <p class="h3 text-white mb-5">Is Waiting For You</p>
+            
+          </div>
+        </div>
+      </div>
+</div>

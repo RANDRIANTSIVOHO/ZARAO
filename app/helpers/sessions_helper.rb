@@ -50,9 +50,11 @@ module SessionsHelper
 
 	def confirmed_count
 		if signed_in
-			unless current_user.confirmed == true
-				flash[:error] = "vous devez confirmer votre compte"
-				redirect_to root_path
+			unless uroot
+				unless current_user.confirmed == true
+					flash[:error] = "vous devez confirmer votre compte"
+					redirect_to root_path
+				end
 			end
 		end
 	end

@@ -1,6 +1,9 @@
 <h1>EDIT USER JOB</h1>
 
 <%= form_for @user do |t| %>
+
+	<%= t.label :avatar, "photo de profil: " %>
+	<%= t.file_field :avatar %><br>
 	
 	<%= t.label :firstname, "Nom: " %>
 	<%= t.text_field :firstname %><br>
@@ -30,6 +33,6 @@
 		<% end %>
 	</select><br>
 
-	<%= t.submit "creer un compte" %>
+	<%= t.submit "changer" %>
 
 <% end %>
