@@ -1,49 +1,76 @@
 <div class="site-section bg-light">
       <div class="container">
         <div class="row">
+
+          <div class="col-lg-12">
+            <div class="p-3 mb-3 bg-white">
+              <center>
+                <h3 class="h5 text-black">PROFILE : <%= current_user.email %></h3>
+              </center>
+            </div>
+          </div>
        
-          <div class="col-lg-6">
+          <div class="col-lg-7">
             <div class="p-4 mb-3 bg-white">
-              <h3 class="h5 text-black mb-3">PROFILE : <%= current_user.email %></h3>
-              <p class="mb-0 font-weight-bold">Nom</p>
-              <p class="mb-4"><%= @user.firstname %></p>
+              
+              <p class="mb-0 font-weight-bold">Nom : <span class="font-weight-normal"> <%= @user.firstname %> </span></p> 
+              <p class="mb-0 font-weight-bold">Prénoms : <span class="font-weight-normal"> <%= @user.lastname %> </span></p>             
+              <p class="mb-0 font-weight-bold">Email : <span class="font-weight-normal"> <%= @user.email %> </span></p>
+              <p class="mb-0 font-weight-bold">Téléphone : <span class="font-weight-normal"> <%= @user.telephone %> </span></p>
 
-              <p class="mb-0 font-weight-bold">Prénoms</p>
-              <p class="mb-4"><%= @user.lastname %></p>
+              <p class="mb-0 font-weight-bold">Salaire : <span class="font-weight-normal"> <%= @user.price %> Ar / mois </span></p>
 
-              <p class="mb-0 font-weight-bold">Email</p>
-              <p class="mb-4"><%= @user.email %></p>
-
-              <p class="mb-0 font-weight-bold">Téléphone</p>
-              <p class="mb-4"><%= @user.telephone %></p>
-
-              <p class="mb-0 font-weight-bold">Salaire</p>
-              <p class="mb-4"><%= @user.price %> Ar / mois</p>
-
-              <p class="mb-0 font-weight-bold">Description</p>
+              <p class="mb-0 font-weight-bold">Description :</p>
               <p class="mb-4"><%= @user.description %></p>
 
-              <p class="mb-0 font-weight-bold">Category</p>
-              <p class="mb-4"><%= Category.find(@user.category_id).title %></p>
+              <p class="mb-0 font-weight-bold">Category :
+              <span class="font-weight-normal"><%= Category.find(@user.category_id).title %> </span></p>
+
+              <br>
+              <%= link_to "Modifier", edit_userjob_path(@user.id), class:"btn btn-primary px-4 py-2 text-white pill" %>
 
             </div>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-lg-5">
           	<div class="p-4 mb-3 bg-white">
-          		<h3 class="h5 text-black mb-3">Your avatar</h3>
+          		<h3 class="h5 text-black ">Your avatar</h3>
           		<p>
 	          	<% if @user.avatar.attached? %>
-					<%= image_tag @user.avatar.variant(resize: "400x400") %>
-				<% else %>
-					<img src="int.jpg" height= "150">
-				<% end %>
-				</p>
-
-				<%= link_to "modifier", edit_userjob_path(@user.id), class:"btn btn-primary px-4 py-2 text-white pill" %>
+      					<%= image_tag @user.avatar.variant(resize: "400x400") %>
+      				<% else %>
+      					<img src="int.jpg" height= "150">
+      				<% end %>
+      				</p>
 			</div>
           </div>
 
+        </div>
+      </div>
+</div>
+
+<div class="py-5 quick-contact-info">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div>
+              <h2><span class="icon-room"></span> Location</h2>
+              <p class="mb-0">New York - 2398 <br>  10 Hadson Carl Street</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div>
+              <h2><span class="icon-clock-o"></span> Service Times</h2>
+              <p class="mb-0">Wednesdays at 6:30PM - 7:30PM <br>
+              Fridays at Sunset - 7:30PM <br>
+              Saturdays at 8:00AM - Sunset</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h2><span class="icon-comments"></span> Get In Touch</h2>
+            <p class="mb-0">Email: info@yoursite.com <br>
+            Phone: (123) 3240-345-9348 </p>
+          </div>
         </div>
       </div>
 </div>

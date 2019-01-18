@@ -1,65 +1,82 @@
-<% if uroot %>
-	<style type="text/css">
-		table{
-			margin-left: 124px;
-			border: 2px solid black;
-		}
 
-		td {
-			text-align: center;
-			width: 350px;
-			border: 2px solid black;
-			border-collapse: collapse;
-		}	
-	</style>
-<% else %>
-	<style type="text/css">
-		table{
-			margin-left: 124px;
-			border: 2px solid black;
-		}
 
-		td {
-			text-align: center;
-			width: 525px;
-			border: 2px solid black;
-			border-collapse: collapse;
-		}	
-	</style>
-<% end %>
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row">
+        	<div class="p-3 mb-3 bg-white">
+				<table style="border-collapse: collapse; margin: 10px">
+					<thead>
+						<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">Nom </td>
+						<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">Description </td>
+						<% if uroot %>
+						<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">Option </td>
+						<% end %>
+					</thead>
+				<% @user.each do |x| %>
+					<tr>
+						<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">
+							<%= x.firstname %>
+						</td>
+						<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">
+							<%= x.description %>
+						</td>
+						<% if uroot %>
+						<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">
 
-<table>
-	<tr>
-		<td>prénom</td>
-		<td>description</td>
-		<% if uroot %>
-			<td>effacer</td>
-		<% end %>	
-	</tr>
-	<tr>
-		<td colspan="3">liste des demandeur</td>
-	</tr>
-	<tr>
-		<% @user.each do |x| %>
-			<td><%= x.lastname %></td>
-			<td><%= x.description %></td>
-			<% if uroot %>
-				<td><%= link_to "effacer", x, method: :delete, data: {confirm: "etes-vous sure d'effacer ce profil?"} %></td>
-			<% end %>	
-		<% end %>
-	</tr>
-	<% if uroot %>	
-		<tr>
-			<td colspan="3">liste des offreur</td>
-		</tr>
-		<tr>
-			<% @user1.each do |y| %>
-				<td><%= y.lastname %></td>
-				<td><%= y.email %></td>
+								<%= link_to "effacer", method: :delete, data: {confirm: "etes-vous sure d'effacer ce profil?"} %>
+
+						</td>
+						<% end %>
+					</tr>
+				<% end %>
+				</table>
+
+				<table  style="border-collapse: collapse; margin: 10px">
 				<% if uroot %>
-					<td><%= link_to "effacer", y, method: :delete, data: {confirm: "etes-vous sure d'effacer ce profil?"} %></td>
-				<% end %>	
-			<% end %>
-		</tr>
-	<% end %>
-</table>
+						<thead>
+							<tr>List des Offres</tr>
+						</thead>
+						<% @user1.each do |y| %>
+						<tr>
+								<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px"><%= y.lastname %></td>
+								<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px"><%= y.email %></td>
+								<% if uroot %>
+									<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px"><%= link_to "effacer", method: :delete, data: {confirm: "etes-vous sure d'effacer ce profil?"} %></td>
+								<% end %>	
+						</tr>
+						<% end %>
+				<% end %>
+				</table>
+			</div>
+			
+
+		</div>
+		
+	</div>	
+</div>
+
+<div class="py-5 quick-contact-info">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div>
+              <h2><span class="icon-room"></span> Location</h2>
+              <p class="mb-0">New York - 2398 <br>  10 Hadson Carl Street</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div>
+              <h2><span class="icon-clock-o"></span> Service Times</h2>
+              <p class="mb-0">Wednesdays at 6:30PM - 7:30PM <br>
+              Fridays at Sunset - 7:30PM <br>
+              Saturdays at 8:00AM - Sunset</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h2><span class="icon-comments"></span> Get In Touch</h2>
+            <p class="mb-0">Email: info@yoursite.com <br>
+            Phone: (123) 3240-345-9348 </p>
+          </div>
+        </div>
+      </div>
+</div>

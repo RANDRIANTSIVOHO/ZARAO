@@ -99,7 +99,7 @@
 <div class="site-section bg-light">
       <div class="container">
         <div class="row">
-          <div class="col-md-8 mb-5 mb-md-0" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-md-12 mb-5 mb-md-0" data-aos="fade-up" data-aos-delay="100">
             <h2 class="mb-5 h3">Recent Jobs</h2>
             <div class="rounded border jobs-wrap">
 
@@ -116,8 +116,8 @@
                       <div class="align-items-center">
                          <h2 class="mr-3 text-black"><%= of.title %><span class="label label-info"></span></h2>
                          <div class="badge-wrap">
-                          <span class="bg-danger text-white badge py-2 px-4"><%= Interested.where(offer_id: of.id).length %></span>
-                          <span class="bg-warning text-white badge py-2 px-4"><%= of.delais %><span> Semaine</span></span>
+                          <span class="bg-warning text-white badge py-2 px-4"><%= Interested.where(offer_id: of.id).length %></span>
+                          <span class="bg-danger text-white badge py-2 px-4"><%= of.delais %><span> Semaine</span></span>
                         </div>
                       </div>
 
@@ -158,9 +158,10 @@
           </div>
 
 
-          <div class="col-md-4 block-16" data-aos="fade-up" data-aos-delay="200">
+          <!-- <div class="col-md-4 block-16" data-aos="fade-up" data-aos-delay="200">
             <div class="d-flex mb-0">
               <h2 class="mb-5 h3 mb-0">Featured Jobs</h2>
+
               <div class="ml-auto mt-1"><a href="#" class="owl-custom-prev">Prev</a> / <a href="#" class="owl-custom-next">Next</a></div>
             </div>
 
@@ -168,6 +169,13 @@
               <% @offers.each do |of| %>
               <div class="border rounded p-4 bg-white">
                 <h2 class="h5"><%= of.title %></h2>
+                <p>
+                  <span class="d-block"><%= Interested.where(offer_id: of.id).length %></span>
+                  <span class="d-block"><%= of.delais %><span> Semaine</span></span>
+                  <span class="d-block"><span class="icon-money mr-1"></span><%= of.price %> Ar</span>
+                </p>
+                <p class="mb-0"><%= of.description %></p>
+
                 <% if utype %>
                 <p>
                   <span>
@@ -180,12 +188,6 @@
                         </span>
                 </p>
                 <% end %>
-                <p>
-                  <span class="d-block"><%= Interested.where(offer_id: of.id).length %></span>
-                  <span class="d-block"><%= of.delais %><span> Semaine</span></span>
-                  <span class="d-block"><span class="icon-money mr-1"></span><%= of.price %> Ar</span>
-                </p>
-                <p class="mb-0"><%= of.description %></p>
               
               <p>
                 <% if signed_in %>
@@ -200,7 +202,7 @@
               </div>
               <% end %>
             </div>
-        </div>
+        </div> -->
       </div>
     </div>
 </div>

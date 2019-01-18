@@ -17,10 +17,10 @@
                 		<li><%= link_to "A propos", about_path %></li>
                 		<li><%= link_to "Contact", contact_path %></li>
                 <% if signed_in %>
-                			<li><%= current_user.email %></li>
+                			
                 			<% if Userjob.find_by(email: current_user.email) %>
                       <li class="has-children">
-                        <a>For Candidats</a>
+                        <a><%= current_user.email %></a>
                         <ul class="dropdown arrow-top">
                           <li><%= link_to "Editer le profil", edit_userjob_path(current_user.id) %></li>
                           <li><%= link_to "Profil", userjob_path(current_user.id) %></li>
@@ -28,18 +28,23 @@
                       </li>
                       		<% elsif Userservice.find_by(email: current_user.email) %>
                       <li class="has-children">
-                        <a>For Employees</a>
+                        <a><%= current_user.email %></a>
                         <ul class="dropdown arrow-top">
                           	<li><%= link_to "Listes des Demandeurs", userjobs_path %></li>
-							<li><%= link_to "Editer le profil", edit_userservice_path(current_user.id)%></li>
-							<li><%= link_to "Voir Profil", userservice_path(current_user.id)%></li>
+      							<li><%= link_to "Editer le profil", edit_userservice_path(current_user.id)%></li>
+      							<li><%= link_to "Voir Profil", userservice_path(current_user.id)%></li>
                         </ul>
                       </li>
                       		<% else %>
-						<li><%= link_to "Listes", userjobs_path %></li>
-							<span>:ADMIN:</span>
+                      <li class="has-children">
+                        <a><%= current_user.email %></a>
+                        <ul class="dropdown arrow-top">
+                            <li><%= link_to "Listes", userjobs_path %></li>
+                        </ul>
+                      </li>
+
 							<% end %>
-						<li><%= link_to "Se déconnecter", logout_path, method: :delete %></li>
+						<li><%= link_to "Se déconnecter", logout_path, method: :delete, class:"bg-primary text-white py-3 px-4 rounded" %></li>
 				<% else %>
 					<li class="has-children">
 							<a> Inscription </a>

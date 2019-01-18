@@ -1,25 +1,115 @@
-<h1>EDIT USER SERVICES</h1>
+<div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
 
-<%= form_for @user do |t| %>
 
-	<%= t.label :pdp1, "photo de profil: " %>
-	<%= t.file_field :pdp1 %><br>
-	
-	<%= t.label :firstname, "Nom: " %>
-	<%= t.text_field :firstname %><br>
+        	
+          
+          <div class="col-md-12 col-lg-8 mb-5">
+          
+            <div class="p-5 bg-white">
+            	<h1>Modification du Profile</h1>
+            	<%= form_for @user do |t| %>
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                	<%= t.label :firstname, "Nom : ", class:"font-weight-bold" %>
+					<%= t.text_field :firstname, class:"form-control" %>
+                </div>
+              </div>
 
-	<%= t.label :lastname, "Prenom: " %>
-	<%= t.text_field :lastname %><br>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  	<%= t.label :lastname, "Prenom : ", class:"font-weight-bold" %>
+					<%= t.text_field :lastname, class:"form-control" %>
+                </div>
+              </div>
 
-	<%= t.label :email, "Email: " %>
-	<%= t.email_field :email %><br>
 
-	<%= t.label :password, "Mot de passe: " %>
-	<%= t.password_field :password %><br>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  	<%= t.label :email, "Email : ", class:"font-weight-bold" %>
+					<%= t.email_field :email, class:"form-control" %>
+                </div>
+              </div>
 
-	<%= t.label :telephone, "N telephone: " %>
-	<%= t.text_field :telephone %><br>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  	<%= t.label :telephone, "N telephone : ", class:"font-weight-bold" %>
+					<%= t.text_field :telephone, class:"form-control" %>
+                </div>
+              </div>
 
-	<%= t.submit "changer" %>
+              <div class="row form-group">
+                <div class="col-md-12">
+                  	<%= t.label :password, "Mot de passe: ", class:"font-weight-bold" %>
+					<%= t.password_field :password, class:"form-control" %>
+                </div>
+              </div>
 
-<% end %>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                  	<%= t.label :pdp1, "photo de profil: ", class:"font-weight-bold" %>
+					<%= t.file_field :pdp1 %>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                	<%= t.submit "Appliquer les Changement", class:"btn btn-primary pill px-4 py-2" %>
+                </div>
+              </div>
+
+  				<% end %>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+	            <div class="p-4 mb-3 bg-white">
+	              <h3 class="h5 text-black mb-3">Modification du Profil</h3>
+	              <p class="mb-0 font-weight-bold">Consigne</p>
+	              <p class="mb-4">ne mettez pas des signs inutile car vous risquerez de perde du temps</p>
+
+	              <p class="mb-0 font-weight-bold">Phone</p>
+	              <p class="mb-4"><a href="#">+1 232 3235 324</a></p>
+
+	              <p class="mb-0 font-weight-bold">Email Address</p>
+	              <p class="mb-0"><a href="#">youremail@domain.com</a></p>
+
+	            </div>
+	            
+	            <div class="p-4 mb-3 bg-white">
+	              <h3 class="h5 text-black mb-3">More Info</h3>
+	              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa ad iure porro mollitia architecto hic consequuntur. Distinctio nisi perferendis dolore, ipsa consectetur? Fugiat quaerat eos qui, libero neque sed nulla.</p>
+	            </div>
+        	</div>
+
+        </div>
+      </div>
+</div>
+
+<div class="py-5 quick-contact-info">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div>
+              <h2><span class="icon-room"></span> Location</h2>
+              <p class="mb-0">New York - 2398 <br>  10 Hadson Carl Street</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div>
+              <h2><span class="icon-clock-o"></span> Service Times</h2>
+              <p class="mb-0">Wednesdays at 6:30PM - 7:30PM <br>
+              Fridays at Sunset - 7:30PM <br>
+              Saturdays at 8:00AM - Sunset</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h2><span class="icon-comments"></span> Get In Touch</h2>
+            <p class="mb-0">Email: info@yoursite.com <br>
+            Phone: (123) 3240-345-9348 </p>
+          </div>
+        </div>
+      </div>
+</div>
