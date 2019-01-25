@@ -54,6 +54,12 @@ ActiveRecord::Schema.define(version: 2019_01_11_085310) do
     t.index ["userservice_id"], name: "index_comments_on_userservice_id"
   end
 
+  create_table "contacts", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "message"
+  end
+
   create_table "interesteds", force: :cascade do |t|
     t.bigint "userjob_id"
     t.bigint "offer_id"

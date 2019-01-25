@@ -5,6 +5,8 @@ class UserjobsController < ApplicationController
     def index
         @user = Userjob.all
         @user1 = Userservice.all
+        @offre = Offer.all
+        @interested = Interested.all
     end
 
     def list
@@ -80,8 +82,12 @@ class UserjobsController < ApplicationController
     def destroy
         if params[:id] == current_user.id || uroot
         	Userjob.destroy(params[:id])
-        	flash[:notice] = "Votre compte a été effacé avec succès"
-        	redirect_to root_path
+        	flash[:notice] = "Ce compte a été effacé avec succès"
+            unless uroot
+                redirect_to root_path
+            else
+                redirect_to userjobs_path
+            end
         else
             flash[:error] = "Vous n'avez pas le droit de faire ce changement"
             redirect_to root_path

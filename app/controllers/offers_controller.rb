@@ -9,20 +9,30 @@ class OffersController < ApplicationController
 
 	def create
 		o = Offer.new(param)
-		!utype ? o.userservice = current_user : false
-		if o.valid?
-			o.save!	
-			flash[:notice] = "publication reussie"
-			redirect_to root_path
+		unless uroot
+			o.userservice = !utype ? current_user : nil
+			if o.valid?
+				o.save!	
+				flash[:notice] = "publication reussie"
+				redirect_to root_path
+			else
+				flash[:error] = "un des donnees est invalid, veuillez le refaire"
+				redirect_to root_path
+			end
 		else
-			flash[:error] = "un des donnees est invalid, veuillez le refaire"
-			redirect_to root_path
+			o.save(validate: false)
 		end
+		
 	end
 
 	def destroy
 		if o = Offer.find(params[:id])
 			if o.userservice_id == current_user.id || current_user.admin == true
+				Interested.all.each do |x|
+					if x.offer_id == o.id
+						x.destroy
+					end
+				end
 				o.destroy
 				flash[:notice] = "suppression avec succes"
 				redirect_to root_path

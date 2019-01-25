@@ -84,12 +84,17 @@
                     <div ><span class="icon-money mr-1"></span> <%= of.price %> Ar</div>
                     <div>
                       <% if signed_in %>
-                    
-                        <% if Userservice.find(of.userservice_id).email == current_user.email || uroot %>
-                          <span><%= link_to "voir les interessés", list_path(of.id) %></span><br>
-                          </span><%= link_to "effacer", offer_path(of), method: :delete, data: {confirm: "Voulez vous vraiment effacer cette publication ?"} %></span>
+                        <% if of.userservice_id %>
+                          <% if Userservice.find(of.userservice_id).email == current_user.email || uroot %>
+                            <span><%= link_to "voir les interessés", list_path(of.id) %></span><br>
+                            </span><%= link_to "effacer", offer_path(of), method: :delete, data: {confirm: "Voulez vous vraiment effacer cette publication ?"} %></span>
+                          <% end %>
+                        <% else %>
+                            <% if uroot %>
+                              <span><%= link_to "voir les interessés", list_path(of.id) %></span><br>
+                              </span><%= link_to "effacer", offer_path(of), method: :delete, data: {confirm: "Voulez vous vraiment effacer cette publication ?"} %></span>
+                            <% end %>
                         <% end %>
-
                       <% end %>
                     </div>
                   </div>
@@ -129,10 +134,12 @@
           <div class="col-md-6 order-md-2">
             
               <div class="img-border">
-                
+                <a href="https://www.youtube.com/watch?v=HAPv57kUg48" class="popup-vimeo image-play">
                   <span class="icon-wrap">
+                    <span class="icon icon-play"></span>
                   </span>
-                    <video class="popup-vimeo image-play" src="images/Larissa.mp4" style="height: 330px; width: 540px;" controls="icon-play"></video> 
+                  <img src="images/larissa.png" alt="Image" class="img-fluid rounded">
+                </a>
               </div>
             
           </div>
@@ -143,7 +150,7 @@
 
             <p class="mb-4 h5 font-italic lineheight1-5">&ldquo;Larissa est une jeune peintre qui sait comment manier son pinceau, une vingtaine d'année et déjà tant de talent à faire profiter au monde .&rdquo;</p>
             <p>&mdash; <strong class="text-black font-weight-bold">Larissa</strong>, Talent Malgache</p>
-            
+            <p><a href="https://www.youtube.com/watch?v=HAPv57kUg48" class="popup-vimeo text-uppercase">Regarder la video <span class="icon-arrow-right small"></span></a></p>
               
           </div>
         </div>
@@ -158,10 +165,12 @@
           <div class="col-md-6 order-md-1">
             
               <div class="img-border">
-                
+                <a href="https://www.youtube.com/watch?v=YIh4GRGfIsM" class="popup-vimeo image-play">
                   <span class="icon-wrap">
+                    <span class="icon icon-play"></span>
                   </span>
-                    <video class="popup-vimeo image-play" src="images/Art.mp4" style="height: 330px; width: 540px;" controls="icon-play"></video> 
+                  <img src="images/routedigue.jpg" alt="Image" class="img-fluid rounded">
+                </a>
               </div>
             
           </div>
@@ -172,6 +181,7 @@
 
             <p class="mb-4 h5 font-italic lineheight1-5">&ldquo;"Art Malagasy route digue" est une petite entreprise familiale qui fabrique et vend des articles fait mains de toutes sortes, en souvenir pour les touristes du splendeur que possède Madagascar.&rdquo;</p>
             <p>&mdash; <strong class="text-black font-weight-bold">Art M route D</strong>, Talent Malgache</p>
+            <p><a href="https://www.youtube.com/watch?v=YIh4GRGfIsM" class="popup-vimeo text-uppercase">Regarder la video  <span class="icon-arrow-right small"></span></a></p>
           </div>
         </div>
       
@@ -184,10 +194,12 @@
           <div class="col-md-6 order-md-2">
             
               <div class="img-border">
-                
+                <a href="https://www.youtube.com/watch?v=usojNcNq-C0" class="popup-vimeo image-play">
                   <span class="icon-wrap">
+                    <span class="icon icon-play"></span>
                   </span>
-                    <video class="popup-vimeo image-play" src="images/Karl.mp4" style="height: 330px; width: 540px;" controls="icon-play"></video> 
+                  <img src="images/Karl.jpg" alt="Image" class="img-fluid rounded">
+                </a>
               </div>
             
           </div>
@@ -198,6 +210,7 @@
 
             <p class="mb-4 h5 font-italic lineheight1-5">&ldquo;Karl est une personne qui possède déja son propre entreprise d'ouvrage en plastique et de sécurité privé, dans tout ses ouvrages, on voit c'est un ferru de l'écologie.&rdquo;</p>
             <p>&mdash; <strong class="text-black font-weight-bold">Karl Fabrice</strong>, Talent Malgache</p>
+            <p><a href="https://www.youtube.com/watch?v=usojNcNq-C0" class="popup-youtube text-uppercase">Regarder la video <span class="icon-arrow-right small"></span></a></p>
           </div>
         </div>
       

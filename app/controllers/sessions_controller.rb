@@ -12,7 +12,11 @@ class SessionsController < ApplicationController
     		if user.authenticate(params[:sessions][:password])
     			log_in user
     			flash[:notice] = "Vous êtes maintenant connecté"
-    			redirect_to root_path
+                unless uroot
+                    redirect_to root_path
+                else
+                    redirect_to userjobs_path
+                end
     		else
     			flash[:error] = "Combinaison invalide"
     			redirect_to login_path

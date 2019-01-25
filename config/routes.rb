@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get "/offers", to:  "offers#new"
   post "/offers", to:  "offers#create"
 
+  get "/offers", to:  "offers#new"
+  post "/offers", to:  "offers#create"
+
   get "/login", to:  "sessions#new"
   post "/login", to:  "sessions#create"
   delete "/logout", to:  "sessions#destroy"

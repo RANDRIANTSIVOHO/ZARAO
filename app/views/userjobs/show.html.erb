@@ -23,8 +23,7 @@
                 <p class="mb-0 font-weight-bold">Salaire : <span class="font-weight-normal"> <%= @user.price %> Ar / mois </span></p>
               <% end %>
 
-              <p class="mb-0 font-weight-bold">Description :</p>
-              <p class="mb-4"><%= @user.description %></p>
+              <p class="mb-0 font-weight-bold">Description : <span class="font-weight-normal"><%= @user.description %></span></p>
 
               <p class="mb-0 font-weight-bold">Catégorie :
               <span class="font-weight-normal"><%= Category.find(@user.category_id).title %> </span></p>

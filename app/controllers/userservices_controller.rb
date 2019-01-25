@@ -43,7 +43,7 @@ class UserservicesController < ApplicationController
 
     def show
       if signed_in
-        @user = current_user
+        @user = Userservice.find(params[:id])
       end
     end
 
@@ -56,8 +56,12 @@ class UserservicesController < ApplicationController
     def destroy
       if params[:id] == current_user.id || uroot
         Userservice.destroy(params[:id])
-        flash[:notice] = "Votre compte a été effacé avec succès"
-        redirect_to root_path
+        flash[:notice] = "Ce compte a été effacé avec succès"
+        unless uroot
+          redirect_to root_path
+        else
+            redirect_to userjobs_path
+         end
       else
         flash[:error] = "Vous n'avez pas le droit de faire ce changement"
         redirect_to root_path
