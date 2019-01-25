@@ -1,0 +1,39 @@
+<div class="site-section bg-light">
+   <div class="container">
+   	  <div class="table-responsive"> 
+            <h1>Recherche</h1>
+            <%= form_tag(view_path, method: :get) do %>
+              <%= text_field_tag :title %>
+              <%= submit_tag 'Rechercher' %>
+            <% end %> 
+
+            				
+                          <table class="table table-bordered">
+                            <thead style="">
+                              <tr>
+                                <td>Nom</td>
+                                <td>Prénom</td>
+                                <td>Desrciption</td>
+                                <td>Catégories</td>
+                                <td>Profil</td>
+                              </tr>
+                            </thead>
+                    <% @users.each do |userjobs| %>
+                            <tbody>
+                              <tr>
+                                <td> <%= userjobs.firstname %></td> 
+                                <td><%= userjobs.lastname %></td>
+                                <td><%= userjobs.description %></td>
+                                <td><%= Category.find(userjobs.category_id).title %></td> 
+                                <td><%= link_to 'Voir le profil', userjob_path(userjobs.id) %></td>
+                              </tr>
+                            </tbody>
+                    <% end %>  
+                          </table>
+                    
+      </div>
+   </div>    
+</div>
+
+
+    

@@ -1,17 +1,83 @@
-<h1>Userjobs#show</h1>
-	
-<p>Nom: <%= @user.firstname %></p><br>
-	
-<p>Prenom: <%= @user.lastname %></p><br>
+<div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
 
-<p>Email: <%= @user.email %></p><br>
-	
-<p>N telephone: <%= @user.telephone %></p><br>
+          <div class="col-lg-12">
+            <div class="p-3 mb-3 bg-white">
+              <center>
+                <h3 class="h5 text-black">PROFIL : <%= @user.email %></h3>
+              </center>
+            </div>
+          </div>
+       
+          <div class="col-lg-7">
+            <div class="p-4 mb-3 bg-white">
+              
+              <p class="mb-0 font-weight-bold">Nom : <span class="font-weight-normal"> <%= @user.firstname %> </span></p> 
+              <p class="mb-0 font-weight-bold">Prénoms : <span class="font-weight-normal"> <%= @user.lastname %> </span></p>
 
-<p>prix: <%= @user.price %>$/mois</p>
-	
-<p>Description: <%= @user.description %></p><br>
-	
-<p>Categorie: <%= Category.find(@user.category_id).title %></p><br>
+              <% if @user.email == current_user.email %>             
+                <p class="mb-0 font-weight-bold">Email : <span class="font-weight-normal"> <%= @user.email %> </span></p>
+                <p class="mb-0 font-weight-bold">Téléphone : <span class="font-weight-normal"> <%= @user.telephone %> </span></p>
 
-<p><%= link_to "modifier", edit_userjob_path(@user.id) %></p>
+                <p class="mb-0 font-weight-bold">Salaire : <span class="font-weight-normal"> <%= @user.price %> Ar / mois </span></p>
+              <% end %>
+
+              <p class="mb-0 font-weight-bold">Description :</p>
+              <p class="mb-4"><%= @user.description %></p>
+
+              <p class="mb-0 font-weight-bold">Catégorie :
+              <span class="font-weight-normal"><%= Category.find(@user.category_id).title %> </span></p>
+
+              <br>
+              <% if @user.email == current_user.email %>
+                  <%= link_to "Modifier", edit_userjob_path(@user.id), class:"btn btn-primary px-4 py-2 text-white pill" %>
+              <% end %>
+              <% if !utype %>
+                  <a class="btn btn-primary px-4 py-2 text-white pill" href="mailto:zaraomadagascar@gmail.com?subject=<%= @user.email %>, <%= current_user.email %>">Contacter</a>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="col-lg-5">
+          	<div class="p-4 mb-3 bg-white">
+          		<h3 class="h5 text-black ">Votre avatar</h3>
+          		<p>
+	          	<% if @user.avatar.attached? %>
+      					<%= image_tag @user.avatar.variant(resize: "400x400") %>
+      				<% else %>
+                <%= image_tag "int.jpg", style: "height: 325px" %>
+      				<% end %>
+      				</p>
+			</div>
+          </div>
+
+        </div>
+      </div>
+</div>
+
+<div class="py-5 quick-contact-info">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div>
+              <h2><span class="icon-room"></span> Location</h2>
+              <p class="mb-0">ANTANANARIVO <br>  Lotissement Bonnet Ivandry</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div>
+              <h2><span class="icon-clock-o"></span> Ouverture</h2>
+              <p class="mb-0">Mercredi à 6:30PM - 7:30PM <br>
+              Jeudi à 8:00AM - 7:30PM <br>
+              Samedi à 8:00AM - 12:00AM </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h2><span class="icon-comments"></span> Contact rapide</h2>
+            <p class="mb-0">Email: zaraomadagascar@gmail.com<br>
+            Phone: +(261) 33 08 157 33 </p>
+          </div>
+        </div>
+      </div>
+</div>

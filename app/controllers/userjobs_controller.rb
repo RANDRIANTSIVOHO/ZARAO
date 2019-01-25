@@ -4,6 +4,22 @@ class UserjobsController < ApplicationController
 
     def index
         @user = Userjob.all
+        @user1 = Userservice.all
+    end
+
+    def list
+        i = 0
+        @users = []
+        if params[:title]
+            Userjob.all.each do |u|
+                if u.firstname.downcase.match(params[:title].downcase) || u.lastname.downcase.match(params[:title].downcase)
+                  @users[i] = u
+                  i += 1
+                end
+            end
+        else
+            @users = Userjob.all
+        end
     end
 
     def new
@@ -11,7 +27,7 @@ class UserjobsController < ApplicationController
     	    @user = Userjob.new
             @categories = Category.all
         else
-            flash[:error] = "vous etes deja connecte"
+            flash[:error] = "Vous êtes déja connecté" 
             redirect_to root_path
         end
     end
@@ -23,14 +39,14 @@ class UserjobsController < ApplicationController
         	if user.valid?
         		user.save
                 UserMailer.confirm(user).deliver_now
-        		flash[:notice] = 'votre compte a ete cree avec succes, veuillez confirmer votre compte'
+        		flash[:notice] = 'Votre compte a été créé avec succès, veuillez confirmer votre compte'
         		redirect_to root_path
         	else
-        		flash[:error] = "donne invalide, veuillez reessayer"
+        		flash[:error] = "Donnée invalide, veuillez réessayer"
         		redirect_to new_userjob_path
         	end
         else
-            flash[:error] = "email deja utilisee"
+            flash[:error] = "Email déja utilisé"
             redirect_to new_userjob_path
         end
     end
@@ -40,17 +56,17 @@ class UserjobsController < ApplicationController
         user.category = Category.find_by(title: params[:user][:category])
     	if user.update(param)
     		user.save
-    		flash[:notice] = "mise a jours reuissie"
-    		render show
+    		flash[:notice] = "Mise à jour réussie"
+    		redirect_to userjob_path(current_user.id)
     	else
-    		flash[:error] = "donne invalid, veuillez reessayer"
+    		flash[:error] = "Donnée invalide, veuillez réessayer"
     		redirect_to  edit_userjob_path(current_user.id)
     	end
     end
 
     def show
     	if signed_in
-    		@user = current_user
+    		@user = Userjob.find(params[:id])
     	end
     end
 
@@ -64,10 +80,10 @@ class UserjobsController < ApplicationController
     def destroy
         if params[:id] == current_user.id || uroot
         	Userjob.destroy(params[:id])
-        	flash[:notice] = "votre compte a ete effacee avec succes"
+        	flash[:notice] = "Votre compte a été effacé avec succès"
         	redirect_to root_path
         else
-            flash[:error] = "vous n'avez pas le droit de faire ce changement"
+            flash[:error] = "Vous n'avez pas le droit de faire ce changement"
             redirect_to root_path
         end
     end
@@ -75,14 +91,14 @@ class UserjobsController < ApplicationController
     def confirm
         if user = Userjob.find(params[:id])
             if user.confirmation_token == params[:token]
-                flash[:notice] = "confirmation reussie, on vous remercie!!!"
+                flash[:notice] = "Confirmation réussie, on vous remercie!!!"
                 user.confirmation_token = nil
                 user.confirmed = true
                 user.save
                 log_in user
                 redirect_to root_path
             else
-                flash[:error] = "token invalid"
+                flash[:error] = "Token invalid"
                 redirect_to root_path
             end
         else
@@ -94,7 +110,6 @@ class UserjobsController < ApplicationController
     private
 
     def param
-    	return params.require(:userjob).permit(:firstname, :lastname, :email, :password, :password_confirmation, :telephone, :description, :price)
+    	return params.require(:userjob).permit(:firstname, :lastname, :email, :password, :password_confirmation, :telephone, :description, :price, :avatar)
     end
-
 end

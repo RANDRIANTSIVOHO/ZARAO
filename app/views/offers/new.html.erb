@@ -1,0 +1,163 @@
+<!-- <% if (!utype || uroot) && signed_in  %>
+	<%= form_for @offer do |of| %>
+		<%= of.label :title, "titre: " %>
+		<%= of.text_field :title %><br>
+		<%= of.label :description, "description: " %>
+		<%= of.text_area :description %><br>
+		<%= of.label :price, "prix: " %>
+		<%= of.text_field :price %><span>$/semaine</span><br>
+		<%= of.label :delais, "delais du projet: " %>
+		<%= of.text_field :delais %><span>semaine</span><br>
+		<%= of.submit "publier" %>
+	<% end %>
+<% end %> -->
+
+<div class="unit-5 overlay" style="background-image: url('images/hero_1.jpg');">
+      <div class="container text-center">
+        <h2 class="mb-0">Publiez votre offre</h2>
+        <p class="mb-0 unit-6"><a href="<%= root_path %>">Accueil</a> <span class="sep">></span> <span>Publiez votre offre</span></p>
+      </div>
+    </div>
+
+    
+    
+
+    <div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
+       
+          <div class="col-md-12 col-lg-8 mb-5">
+          
+            <% if (!utype || uroot) && signed_in  %>
+            <div class="p-5 bg-white">
+            	<%= form_for @offer do |of| %>
+
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                	<%= of.label :title, "Titre: ", class:"font-weight-bold" %>
+                	<%= of.text_field :title, class:"form-control" %>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  	<%= of.label :description, "Description: ", class:"font-weight-bold" %>
+					<%= of.text_area :description, class:"form-control", cols:"30", rows:"5" %>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  	<%= of.label :price, "Prix: ", class:"font-weight-bold" %>
+					<%= of.text_field :price, class:"form-control" %><span> Ar / mois</span>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12 mb-3 mb-md-0">
+                  	<%= of.label :delais, "Delais: ", class:"font-weight-bold" %>
+					<%= of.text_field :delais, class:"form-control" %>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-md-12">
+                	<%= of.submit "Publier", class:"btn btn-primary  py-2 px-5" %>
+                </div>
+              </div>
+
+  
+            	<% end %>
+            </div>
+           <% end %>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="p-4 mb-3 bg-white">
+              <h3 class="h5 text-black mb-3">Info contact</h3>
+
+              <p class="mb-0 font-weight-bold">Télephone</p>
+              <p class="mb-4"><a href="#">+261 33 08 157 33</a></p>
+
+              <p class="mb-0 font-weight-bold">Adresse email</p>
+              <p class="mb-0"><a href="#">zaraomadagascar@gmail.com</a></p>
+
+            </div>
+            
+            <div class="p-4 mb-3 bg-white">
+              <h3 class="h5 text-black mb-3">Plus d'info</h3>
+              <p>Besoin d'aide? Contactez nous.</p>
+
+            </div>
+            
+           
+          </div>
+        </div>
+      </div>
+    </div>
+
+   
+
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+          <div class="col-md-6" data-aos="fade" >
+            <h2>Posez vos questions !</h2>
+          </div>
+        </div>
+        
+
+        <div class="row justify-content-center" data-aos="fade" data-aos-delay="100">
+          <div class="col-md-8">
+            <div class="accordion unit-8" id="accordion">
+            <div class="accordion-item">
+              <h3 class="mb-0 heading">
+                <a class="btn-block" data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="true" aria-controls="collapseOne">Pourquoi "ZARAO" ?<span class="icon"></span></a>
+              </h3>
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="body-text">
+                  <p>Nous avons choisi "ZARAO" comme nom de notre site tout simplement parce que le site à pour but principal de partager et promouvoir le talent que possède le peuple malgache, les aider à sortir de la pauvreté en fesant connaître leurs oeuvres dans le monde pour les mettres en relation avec des personnes qui pouraient les aider.</p>
+                </div>
+              </div>
+            </div> <!-- .accordion-item -->
+            
+            <div class="accordion-item">
+              <h3 class="mb-0 heading">
+                <a class="btn-block" data-toggle="collapse" href="#collapseTwo" role="button" aria-expanded="false" aria-controls="collapseTwo">Quel est le tarif moyen proposer par le site?<span class="icon"></span></a>
+              </h3>
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="body-text">
+                  <p>Vu qu'il y a plusieurs catégories qui sont différents les uns des autres, le tarif varie énormément. <br>Mais que ce soit journalier, mensuel ou contractuel, nous garantissons que le tarif proposé par les inscrits seront négociable !</p>
+                </div>
+              </div>
+            </div> <!-- .accordion-item -->
+
+            <div class="accordion-item">
+              <h3 class="mb-0 heading">
+                <a class="btn-block" data-toggle="collapse" href="#collapseThree" role="button" aria-expanded="false" aria-controls="collapseThree">Dois-je m'inscrire pour proposer partager mon talent?  <span class="icon"></span></a>
+              </h3>
+              <div id="collapseThree" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="body-text">
+                  <p>Pour les jeunes qui veulent offrir leurs services, l'inscriptions est obligatoire car il y aura une vérification pour l'authenticité de votre dire, afin de ne pas polluer le site de personnes indésirables!</p>
+                </div>
+              </div>
+            </div> <!-- .accordion-item -->
+
+            <div class="accordion-item">
+              <h3 class="mb-0 heading">
+                <a class="btn-block" data-toggle="collapse" href="#collapseFour" role="button" aria-expanded="false" aria-controls="collapseFour">Qui pourrais-je contacter en cas de problème.<span class="icon"></span></a>
+              </h3>
+              <div id="collapseFour" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="body-text">
+                  <p>Dans l'onglet "CONTACT", vous pouvez nous ecrire ainsi que nous appeler en cas de problème, nous sommes aussi ouvert à toutes proposition d'amélioration ou tout simplement de critique ! <br>Nous avons hâte de connaître vos avis :) !</p>
+                </div>
+              </div>
+            </div> <!-- .accordion-item -->
+
+          </div>
+          </div>
+        </div>
+      
+      </div>
+    </div>

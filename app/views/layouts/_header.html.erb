@@ -1,0 +1,68 @@
+<div class="site-navbar-wrap js-site-navbar bg-white">
+      
+      <div class="container">
+        <div class="site-navbar bg-light">
+          <div class="py-1">
+            <div class="row align-items-center">
+              <div class="col-2">
+                <h2 class="mb-0 site-logo"><a href="<%= root_path %>"><img src="/images/logo.png" style="height: 100px; width: 130px"></a></h2>
+              </div>
+              <div class="col-10">
+                <nav class="site-navigation text-right" role="navigation">
+                  <div class="container">
+                    <div class="d-inline-block d-lg-none ml-md-0 mr-auto py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a></div>
+
+                    <ul class="site-menu js-clone-nav d-none d-lg-block">
+                    	
+                		<li><%= link_to "A propos", about_path %></li>
+                		<li><%= link_to "Contact", contact_path %></li>
+                <% if signed_in %>
+                			
+                			<% if Userjob.find_by(email: current_user.email) %>
+                      <li class="has-children">
+                        <a><%= current_user.email %></a>
+                        <ul class="dropdown arrow-top">
+                          <li><%= link_to "Editer le profil", edit_userjob_path(current_user.id) %></li>
+                          <li><%= link_to "Profil", userjob_path(current_user.id) %></li>
+                        </ul>
+                      </li>
+                      		<% elsif Userservice.find_by(email: current_user.email) %>
+                      <li><%= link_to "Nos talents", view_path %></li>
+                      <li class="has-children">
+                        <a><%= current_user.email %></a>
+                        <ul class="dropdown arrow-top">
+      							<li><%= link_to "Editer le profil", edit_userservice_path(current_user.id)%></li>
+      							<li><%= link_to "Voir Profil", userservice_path(current_user.id)%></li>
+                        </ul>
+                      </li>
+                      		<% else %>
+                      <li class="has-children">
+                        <a><%= current_user.email %></a>
+                        <ul class="dropdown arrow-top">
+                            <li><%= link_to "Listes", userjobs_path %></li>
+                        </ul>
+                      </li>
+
+							<% end %>
+						<li><%= link_to "Se déconnecter", logout_path, method: :delete, class:"bg-primary text-white py-3 px-4 rounded" %></li>
+				<% else %>
+					<li class="has-children">
+							<a> Inscription </a>
+	                  <ul class="dropdown arrow-top">
+	                    <li><%=link_to "Partage ton talent", new_userjob_path %></li>
+	                    <li><%=link_to "Trouve le meilleur", new_userservice_path %></li>
+	                  </ul>
+	                </li>
+	                <li><%= link_to "Connexion", login_path, class:"bg-primary text-white py-3 px-4 rounded" %></li>
+				<% end %>
+                    
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+<div style="height: 113px;"></div>

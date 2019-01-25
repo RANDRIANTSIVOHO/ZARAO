@@ -1,15 +1,65 @@
-<h1>Sessions#new</h1>
-      
-<% if flash[:error] || flash[:notice] %>
-  	<script type="text/javascript">alert(<%= flash[:error] %> <%= flash[:notice] %>)</script>
-<% end %>
+<div class="site-blocks-cover overlay inner-page" style="" data-aos="fade" data-stellar-background-ratio="0.5">
+<video class="video-background" no-controls autoplay loop muted src="images/animev.mp4" height="100%" width="100%" style="object-fit: cover !important; position: fixed;">
+</video>
+<div class="container">
+    <section class="site-section bg-light" >
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-7" style="bottom: 75px; margin-bottom: -200px; margin-top: 30px; color: white;">
+           
+              <center><h2 style="color: white;">Connectez-vous à votre compte</h2></center>
+              <%= form_for(:sessions, url: login_path) do |t| %>
+                <div class="row">
+                  <div class="col-md-12 form-group">
+                    <center><%= t.label :email, "Email" %></center>
+                    <%= t.email_field :email, class:"form-control" %>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 form-group">
+                    <center><%= t.label :password, "Mot de passe" %></center>
+                    <%= t.password_field :password, class:"form-control" %>
+                  </div>
+                </div>
 
-<%= form_for(:sessions, url: login_path) do |t| %>
-	<%= t.label :email, "Email: " %>
-	<%= t.email_field :email %><br>
+                <center>
+             
+                  <div class="col-md-6 form-group">
+                  	<%= t.submit "se connecter", class:"btn btn-primary px-5 py-2" %>
+                  </div>
+                
+                </center>
+              <% end %>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+</div>
+</div>
 
-	<%= t.label :password, "Mot de passe" %>
-	<%= t.password_field :password %><br>
 
-	<%= t.submit "se connecter" %>
-<% end %>
+<div class="py-5 quick-contact-info">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div>
+              <h2><span class="icon-room"></span> Location</h2>
+              <p class="mb-0">ANTANANARIVO <br>  Lotissement Bonnet Ivandry</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div>
+              <h2><span class="icon-clock-o"></span> Ouverture</h2>
+              <p class="mb-0">Mercredi à 6:30PM - 7:30PM <br>
+              Jeudi à 8:00AM - 7:30PM <br>
+              Samedi à 8:00AM - 12:00AM </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h2><span class="icon-comments"></span> Contact rapide</h2>
+            <p class="mb-0">Email: zaraomadagascar@gmail.com<br>
+            Phone: +(261) 33 08 157 33 </p>
+          </div>
+        </div>
+      </div>
+</div>

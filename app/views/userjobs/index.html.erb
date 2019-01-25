@@ -1,4 +1,82 @@
-<% @user.each do |x| %>
-	<p>prénom : <%= x.lastname %></p>
-	<p>description : <%= x.description %></p>
-<% end %>
+
+
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row">
+        	<div class="p-3 mb-3 bg-white">
+				<table style="border-collapse: collapse; margin: 10px">
+					<thead>
+						<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">Nom </td>
+						<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">Description </td>
+						<% if uroot %>
+						<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">Option </td>
+						<% end %>
+					</thead>
+				<% @user.each do |x| %>
+					<tr>
+						<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">
+							<%= x.firstname %>
+						</td>
+						<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">
+							<%= x.description %>
+						</td>
+						<% if uroot %>
+						<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">
+
+								<%= link_to "effacer", method: :delete, data: {confirm: "êtes-vous sur d'effacer le profil ?"} %>
+
+						</td>
+						<% end %>
+					</tr>
+				<% end %>
+				</table>
+
+				<table  style="border-collapse: collapse; margin: 10px">
+				<% if uroot %>
+						<thead>
+							<tr>List des Offres</tr>
+						</thead>
+						<% @user1.each do |y| %>
+						<tr>
+								<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px"><%= y.lastname %></td>
+								<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px"><%= y.email %></td>
+								<% if uroot %>
+									<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px"><%= link_to "Effacer", method: :delete, data: {confirm: "êtes-vous sur d'effacer le profil ?"} %></td>
+								<% end %>	
+						</tr>
+						<% end %>
+				<% end %>
+				</table>
+			</div>
+			
+
+		</div>
+		
+	</div>	
+</div>
+
+<div class="py-5 quick-contact-info">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div>
+              <h2><span class="icon-room"></span> Location</h2>
+              <p class="mb-0">ANTANANARIVO <br>  Lotissement Bonnet Ivandry</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div>
+              <h2><span class="icon-clock-o"></span> Ouverture</h2>
+              <p class="mb-0">Mercredi à 6:30PM - 7:30PM <br>
+              Jeudi après-midi - 7:30PM <br>
+              Samedi à 8:00AM - </p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <h2><span class="icon-comments"></span> Contact rapide</h2>
+            <p class="mb-0">Email: zarao@sayna.io<br>
+            Phone: (261) 3308-157-33 </p>
+          </div>
+        </div>
+      </div>
+</div>

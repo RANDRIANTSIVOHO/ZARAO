@@ -1,41 +1,218 @@
-<h1>Accueil</h1>
+<div class="site-blocks-cover overlay" style="background-image: url('images/Fond.jpeg');" data-aos="fade" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12" data-aos="fade">
+            <h1 style="font-family: 'Permanent Marker';">ZARAO</h1>
+            
+              <div class="row mb-3">
+                <div class="col-md-9">
+                  <div class="row">
+                    
+                      <% if (!utype || uroot) && signed_in  %>
+                          <div class="col-md-6 mb-3 mb-md-0">
+                            <a href="<%= offers_path %>" class="btn btn-primary btn-block"><span class="h5">+</span> Poster un nouvel offre</a>
+                          </div>
+                      <% end %>
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <p class="small" style="font-family: 'Satisfy'; font-size: 18px">"Le partage des expériences, des compétences de chacun <br>et chacune favorise la croissance de l'intelligence collective."</p>
+                </div>
+              </div>
+              
+            
+          </div>
+        </div>
+      </div>
+</div>
+            
+            
+              <div class="row mb-3">
+                <div class="col-md-9">
+                  <div class="row">
+                    
+                      <% if (!utype || uroot) && signed_in  %>
+                          <div class="col-md-6 mb-3 mb-md-0">
+                            
+                          </div>
+                      <% end %>
+                    
+                  </div>
+                </div>
+              </div>
+              
+              
+            
+          </div>
+        </div>
+      </div>
+</div>
 
 
 
-<% @offers.each do |of| %>
-	<div>
-		<p>titre: <%= of.title %></p><br>
-		<p>description: <%= of.description %></p><br>
-		<p>prix: <%= of.price %><span>$/semaine</span></p><br>
-		<p>delais: <%= of.delais %><span>semaine</span></p><br>
-		<p><%= Interested.where(offer_id: of.id).length %>interesse</p>
-		<% if utype %>
-			<% if Interested.find_by(offer_id: of.id, userjob_id: current_user.id) %>
-				<p><%= link_to "plus interesse", interested_path(of.id), method: :delete %></p>
-			<% else %>
-				<p><%= link_to "interesse", interesteds_path(of.id) %></p>
-			<% end %>
-		<% end %>
-		<% if signed_in %>
-			<% if Userservice.find(of.userservice_id).email == current_user.email %>
-				<p><%= link_to "voir les interesse", list_path(of.id) %></p>
-				<p><%= link_to "effacer", offer_path(of), method: :delete, data: {confirm: "voulez vous vraiment effacer cette publication?"} %></p>
-			<% end %>
-		<% end %>
-	</div>
-<% end %>
 
 
-<% if (!utype || uroot) && signed_in  %>
-	<%= form_for @offer do |of| %>
-		<%= of.label :title, "titre: " %>
-		<%= of.text_field :title %><br>
-		<%= of.label :description, "description: " %>
-		<%= of.text_area :description %><br>
-		<%= of.label :price, "prix: " %>
-		<%= of.text_field :price %><span>$/semaine</span><br>
-		<%= of.label :delais, "delais du projet: " %>
-		<%= of.text_field :delais %><span>semaine</span><br>
-		<%= of.submit "publier" %>
-	<% end %>
-<% end %>
+<div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-5 mb-md-0" data-aos="fade-up" data-aos-delay="100">
+            <h2 class="mb-5 h3">Publications récentes</h2>
+            <div class="rounded border jobs-wrap">
+
+              <% @offers.each do |of| %>
+              
+              <div class="job-item d-block d-md-flex align-items-center">
+                <div class="job-details h-100">
+
+                 
+                  
+                   
+
+                  <div class="p-3 align-self-center">
+                      <div class="align-items-center">
+                         <h2 class="mr-3 text-black"><%= of.title %><span class="label label-info"></span></h2>
+                         <div class="badge-wrap">
+                          <span class="bg-warning text-white badge py-2 px-4"><%= Interested.where(offer_id: of.id).length %></span>
+                          <span class="bg-danger text-white badge py-2 px-4"><%= of.delais %><span> Semaine</span></span>
+                        </div>
+                      </div>
+
+                    <div class="mr-3"><%= of.description %></div>
+                    <div ><span class="icon-money mr-1"></span> <%= of.price %> Ar</div>
+                    <div>
+                      <% if signed_in %>
+                    
+                        <% if Userservice.find(of.userservice_id).email == current_user.email || uroot %>
+                          <span><%= link_to "voir les interessés", list_path(of.id) %></span><br>
+                          </span><%= link_to "effacer", offer_path(of), method: :delete, data: {confirm: "Voulez vous vraiment effacer cette publication ?"} %></span>
+                        <% end %>
+
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+
+                <% if utype %>
+                <div class="job-category align-self-center">
+                  <div class="p-3">
+                    <span class="p-2">
+                      
+                        <% if Interested.find_by(offer_id: of.id, userjob_id: current_user.id) %>
+                          <%= link_to "Déjà interessé", interested_path(of.id), method: :delete, class:"btn btn-primary" %>
+                        <% else %>
+                          <%= link_to "Interessé", interesteds_path(of.id), class:"btn btn-primary" %>
+                        <% end %>
+                      
+          
+                    </span>
+                  </div>
+                </div>
+                <% end %>  
+              </div>
+              <% end %>
+            </div>
+          </div>
+
+
+
+      </div>
+    </div>
+</div>
+
+
+<div class="site-section bg-white">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6 order-md-2">
+            
+              <div class="img-border">
+                
+                  <span class="icon-wrap">
+                  </span>
+                    <video class="popup-vimeo image-play" src="images/Larissa.mp4" style="height: 330px; width: 540px;" controls="icon-play"></video> 
+              </div>
+            
+          </div>
+          <div class="col-md-6 order-md-1">
+            <div class="text-left mb-5 section-heading">
+              <h2>Une artiste peintre qui n'a d'égal que sa beauté</h2>
+            </div>
+
+            <p class="mb-4 h5 font-italic lineheight1-5">&ldquo;Larissa est une jeune peintre qui sait comment manier son pinceau, une vingtaine d'année et déjà tant de talent à faire profiter au monde .&rdquo;</p>
+            <p>&mdash; <strong class="text-black font-weight-bold">Larissa</strong>, Talent Malgache</p>
+            
+              
+          </div>
+        </div>
+      
+      </div>
+</div>
+
+<div class="site-section bg-light">
+      <div class="container">
+        
+        <div class="row align-items-center">
+          <div class="col-md-6 order-md-1">
+            
+              <div class="img-border">
+                
+                  <span class="icon-wrap">
+                  </span>
+                    <video class="popup-vimeo image-play" src="images/Art.mp4" style="height: 330px; width: 540px;" controls="icon-play"></video> 
+              </div>
+            
+          </div>
+          <div class="col-md-6 order-md-2">
+            <div class="text-left mb-5 section-heading">
+              <h2>L'art Malgache dans toute sa splendeur</h2>
+            </div>
+
+            <p class="mb-4 h5 font-italic lineheight1-5">&ldquo;"Art Malagasy route digue" est une petite entreprise familiale qui fabrique et vend des articles fait mains de toutes sortes, en souvenir pour les touristes du splendeur que possède Madagascar.&rdquo;</p>
+            <p>&mdash; <strong class="text-black font-weight-bold">Art M route D</strong>, Talent Malgache</p>
+          </div>
+        </div>
+      
+      </div>
+</div>
+
+<div class="site-section bg-white">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-md-6 order-md-2">
+            
+              <div class="img-border">
+                
+                  <span class="icon-wrap">
+                  </span>
+                    <video class="popup-vimeo image-play" src="images/Karl.mp4" style="height: 330px; width: 540px;" controls="icon-play"></video> 
+              </div>
+            
+          </div>
+          <div class="col-md-6 order-md-1">
+            <div class="text-left mb-5 section-heading">
+             <h2>Ecologie avec un grand "E"</h2>
+            </div>
+
+            <p class="mb-4 h5 font-italic lineheight1-5">&ldquo;Karl est une personne qui possède déja son propre entreprise d'ouvrage en plastique et de sécurité privé, dans tout ses ouvrages, on voit c'est un ferru de l'écologie.&rdquo;</p>
+            <p>&mdash; <strong class="text-black font-weight-bold">Karl Fabrice</strong>, Talent Malgache</p>
+          </div>
+        </div>
+      
+      </div>
+</div>
+
+<div class="site-blocks-cover overlay inner-page" style="background-image: url('images/fondg.jpg');" data-aos="fade" data-stellar-background-ratio="0.5">
+      <div class="container">
+        <div class="row align-items-center justify-content-center">
+          <div class="col-md-6 text-center" data-aos="fade">
+            <h1 class="h3 mb-0" style="font-family: 'Dancing Script';">Fais de ta passion un art</h1>
+            <p class="h3 text-white mb-5">VIE DE TON TALENT !</p>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

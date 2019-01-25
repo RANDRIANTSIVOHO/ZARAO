@@ -9,11 +9,14 @@
 
 Admin.create(email: "fef@fef.fef", password: "froot", password_confirmation: "froot")
 Admin.create(email: "Admin@zarao.mg", password: "root", password_confirmation: "root")
+Admin.create(email: "dadmin@zarao.mg", password: "Droot", password_confirmation: "Droot")
+Admin.create(email: "john@zarao.mg", password: "johnroot", password_confirmation: "johnroot")
 
 
 Category.create(title: "Peinture")
-Category.create(title: "Music")
-Category.create(title: "Dance")
+Category.create(title: "Musique")
+Category.create(title: "Danse")
 Category.create(title: "Electronique")
 Category.create(title: "Informatique")
+Category.create(title: "Culinaire")
 Category.create(title: "Culinaire")

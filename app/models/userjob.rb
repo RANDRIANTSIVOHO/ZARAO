@@ -17,7 +17,7 @@ class Userjob < ApplicationRecord
 	validates :email,
 				presence: true,
 				length: {maximum: 255},
-				format: {with: /\A([\w\-\.]+@[A-Za-z0-9]+\.[A-Za-z]{3,8})\z/},
+				format: {with: /\A([\w\-\.]+@[A-Za-z0-9]+\.[A-Za-z]{2,8})\z/},
 				uniqueness: {case_sensitive: false}
 
 	validates :telephone,
@@ -33,5 +33,6 @@ class Userjob < ApplicationRecord
 	has_secure_password
 
 	has_secure_token :confirmation_token
+	has_one_attached :avatar
 										
 end

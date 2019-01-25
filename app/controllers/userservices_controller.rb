@@ -6,7 +6,7 @@ class UserservicesController < ApplicationController
       if !signed_in
         @user = Userservice.new
       else
-        flash[:error] = "vous etes deja connecte"
+        flash[:error] = "Vous êtes déjà connecté"
         redirect_to root_path
       end
     end
@@ -17,14 +17,14 @@ class UserservicesController < ApplicationController
         if user.valid?
           user.save
           UserMailer.confirm(user, false).deliver_now
-          flash[:notice] = 'votre compte a ete cree avec succes, veuillez confirmer votre compte'
+          flash[:notice] = 'Votre compte a été créé avec succès, veuillez confirmer votre compte'
           redirect_to root_path
         else
-          flash[:error] = "donne invalide, veuillez reessayer"
+          flash[:error] = "Donnée invalide, veuillez réessayer"
           redirect_to new_userservice_path
         end
       else
-        flash[:error] = "email deja utilisee"
+        flash[:error] = "Email déjà utilisé"
         redirect_to new_userservice_path
       end
     end
@@ -33,10 +33,10 @@ class UserservicesController < ApplicationController
       user = current_user
       if user.update(param)
         user.save
-        flash[:notice] = "mise a jours reuissie"
-        render show
+        flash[:notice] = "Mise à jour réussie"
+        redirect_to userservice_path(current_user.id)
       else
-        flash[:error] = "donne invalid, veuillez reessayer"
+        flash[:error] = "Donnée invalide, veuillez réessayer"
         redirect_to  edit_userservice_path(current_user.id)
       end
     end
@@ -56,10 +56,10 @@ class UserservicesController < ApplicationController
     def destroy
       if params[:id] == current_user.id || uroot
         Userservice.destroy(params[:id])
-        flash[:notice] = "votre compte a ete effacee avec succes"
+        flash[:notice] = "Votre compte a été effacé avec succès"
         redirect_to root_path
       else
-        flash[:error] = "vous n'avez pas le droit de faire ce changement"
+        flash[:error] = "Vous n'avez pas le droit de faire ce changement"
         redirect_to root_path
       end
     end
@@ -67,14 +67,14 @@ class UserservicesController < ApplicationController
     def confirm
       if user = Userservice.find(params[:id])
           if user.confirmation_token == params[:token]
-            flash[:notice] = "confirmation reussie, on vous remercie!!!"
+            flash[:notice] = "Confirmation réussie, on vous remercie!!!"
             user.confirmation_token = nil
             user.confirmed = true
             user.save
             log_in user
             redirect_to root_path
           else
-            flash[:error] = "token invalid"
+            flash[:error] = "Token invalid"
             redirect_to root_path
           end
         else
@@ -86,7 +86,7 @@ class UserservicesController < ApplicationController
     private
 
     def param
-      return params.require(:userservice).permit(:firstname, :lastname, :email, :password, :password_confirmation, :telephone)
+      return params.require(:userservice).permit(:firstname, :lastname, :email, :password, :password_confirmation, :telephone, :pdp1)
     end
 
 

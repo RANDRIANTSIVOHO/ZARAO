@@ -1,25 +1,35 @@
-<table style="border-collapse: collapse; margin: 10px">
-	<thead>
-		<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">Name : </td>
-		<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">Description : </td>
-		<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">Category: </td>
-	</thead>
-<% @interesse.each do |i| %>
-	<% u = Userjob.find(i.userjob_id) %>
-	<tr>
-		<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">
-			<%=  u.firstname %> <%=  u.lastname %>
-		</td>
-		<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">
-			<%= u.description %>
-		</td>
-		<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">
-			<%= Category.find(u.category_id).title %>
-		</td>
-	</tr>
-<% end %>
-</table>
+<div class="site-section bg-light">
+    <div class="container">
+        <div class="row">
+        	<center>
+        	<div class="p-3 mb-3 bg-white">
+				<table style="border-collapse: collapse; margin: 10px">
+					<thead>
+						<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">Nom : </td>
+						<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">Description : </td>
+						<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">Categorie: </td>
+					</thead>
+				<% @interesse.each do |i| %>
+					<% u = Userjob.find(i.userjob_id) %>
+					<tr>
+						<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">
+							<%=  u.firstname %> <%=  u.lastname %>
+						</td>
+						<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">
+							<%= u.description %>
+						</td>
+						<td style="border: 2px solid black; padding: 0px 10px; width: 320px; height: 25px">
+							<%= Category.find(u.category_id).title %>
+						</td>
+					</tr>
+				<% end %>
+				</table>
+			</div>
+			</center>
+			<% p = Offer.find(@interesse.first.offer_id) %>
 
-<% p = Offer.find(@interesse.first.offer_id) %>
-<%= link_to "payer", pay_path(p.price) %>
-<%= link_to "back", root_path %>
+		</div>
+		
+		<%= link_to "Retour", root_path %>
+	</div>	
+</div>

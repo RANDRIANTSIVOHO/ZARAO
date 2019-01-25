@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   get "/about", to: "aboute#index"
   get "/contact", to: "contact#index"
+  get "/view", to: "userjobs#list"
+
+  get "/offers", to:  "offers#new"
+  post "/offers", to:  "offers#create"
 
   get "/login", to:  "sessions#new"
   post "/login", to:  "sessions#create"
